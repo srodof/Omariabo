@@ -32,7 +32,7 @@ export default function Cover() {
 
   return (
     <section className="cover" id="cover" ref={scope}>
-      <img className="cover__img" src={coverImg} alt="Modelo usando conjunto OMARIA en tono onyx" />
+      <img className="cover__img" src={coverImg} alt="Modelo usando crop top blanco y calza lila OMARIA" />
       <div className="cover__scrim" />
       <div className="cover__top cover-in">
         <div className="cover__mark" data-depth="0.4">

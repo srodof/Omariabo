@@ -30,6 +30,19 @@ import bikerAzulHero from '../assets/photos/biker_azul_hero.jpg'
 import bikerMentaHero from '../assets/photos/biker_menta_hero.jpg'
 import bikerNegroHero from '../assets/photos/biker_negro_hero.jpg'
 
+import cortasAzulHero from '../assets/photos/cortas_azul_hero.jpg'
+import cortasAzulSec from '../assets/photos/cortas_azul_sec.jpg'
+import cortasCacaoHero from '../assets/photos/cortas_cacao_hero.jpg'
+import cortasCacaoSec from '../assets/photos/cortas_cacao_sec.jpg'
+import cortasFucsiaHero from '../assets/photos/cortas_fucsia_hero.jpg'
+import cortasFucsiaSec from '../assets/photos/cortas_fucsia_sec.jpg'
+import cortasLilaHero from '../assets/photos/cortas_lila_hero.jpg'
+import cortasLilaSec from '../assets/photos/cortas_lila_sec.jpg'
+import cortasMentaHero from '../assets/photos/cortas_menta_hero.jpg'
+import cortasMentaSec from '../assets/photos/cortas_menta_sec.jpg'
+import cortasNegroHero from '../assets/photos/cortas_negro_hero.jpg'
+import cortasNegroSec from '../assets/photos/cortas_negro_sec.jpg'
+
 export type Product = {
   line: string
   colorway: string
@@ -69,6 +82,15 @@ export const CALZAS_BIKER: Product[] = [
   { line: 'Calzas Biker', colorway: 'Azul', hex: '#2f4fd6', hero: bikerAzulHero, sec: bikerAzulHero, price: 185 },
   { line: 'Calzas Biker', colorway: 'Fucsia', hex: '#ec1f8f', hero: bikerFucsiaHero, sec: bikerFucsiaHero, price: 185 },
   { line: 'Calzas Biker', colorway: 'Menta', hex: '#8fe0d4', hero: bikerMentaHero, sec: bikerMentaHero, price: 185 },
+]
+
+export const CALZAS_CORTAS: Product[] = [
+  { line: 'Calzas Cortas', colorway: 'Negro', hex: '#1a1a1a', hero: cortasNegroHero, sec: cortasNegroSec, price: 175 },
+  { line: 'Calzas Cortas', colorway: 'Azul', hex: '#2f4fd6', hero: cortasAzulHero, sec: cortasAzulSec, price: 175 },
+  { line: 'Calzas Cortas', colorway: 'Fucsia', hex: '#ec1f8f', hero: cortasFucsiaHero, sec: cortasFucsiaSec, price: 175 },
+  { line: 'Calzas Cortas', colorway: 'Menta', hex: '#8fe0d4', hero: cortasMentaHero, sec: cortasMentaSec, price: 175 },
+  { line: 'Calzas Cortas', colorway: 'Lila', hex: '#b98ee0', hero: cortasLilaHero, sec: cortasLilaSec, price: 175 },
+  { line: 'Calzas Cortas', colorway: 'Cacao', hex: '#a98a95', hero: cortasCacaoHero, sec: cortasCacaoSec, price: 175 },
 ]
 
 export function linePalette(items: Product[]) {

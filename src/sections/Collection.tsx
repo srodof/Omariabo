@@ -1,5 +1,5 @@
 import ProductCard from '../components/ProductCard'
-import { TOP_AURA, TOP_NOVA, CROP_TOPS, CALZAS_BIKER } from '../data/products'
+import { TOP_AURA, TOP_NOVA, CROP_TOPS, CALZAS_BIKER, CALZAS_CORTAS } from '../data/products'
 import { useRevealRef } from '../lib/gsap'
 
 function Category({
@@ -31,23 +31,6 @@ function Category({
   )
 }
 
-function ComingSoon({ id, title, desc }: { id: string; title: string; desc: string }) {
-  const ref = useRevealRef<HTMLDivElement>()
-  return (
-    <div className="category" id={id} ref={ref}>
-      <div className="category__head">
-        <h3 className="display will-reveal">{title}</h3>
-        <p className="will-reveal" data-delay="0.05">
-          {desc}
-        </p>
-      </div>
-      <div className="coming-soon will-reveal" data-delay="0.1">
-        Próximamente
-      </div>
-    </div>
-  )
-}
-
 export default function Collection() {
   const headRef = useRevealRef<HTMLDivElement>()
   return (
@@ -59,8 +42,9 @@ export default function Collection() {
             La colección
           </h2>
           <p className="will-reveal" data-delay="0.1">
-            Cuatro líneas pensadas para moverse juntas: dos siluetas de top deportivo, un crop top
-            de algodón y calzas biker de tiro alto — con el mismo ajuste OMARIA en cada color.
+            Cinco líneas pensadas para moverse juntas: dos siluetas de top deportivo, un crop top
+            de algodón, calzas biker de tiro alto y calzas cortas — con el mismo ajuste OMARIA en
+            cada color.
           </p>
         </div>
 
@@ -88,10 +72,11 @@ export default function Collection() {
           desc="Shorts biker de tiro alto, silueta ceñida y cintura ancha sin costuras visibles."
           items={CALZAS_BIKER}
         />
-        <ComingSoon
+        <Category
           id="cat-cortas"
           title="Calzas Cortas"
-          desc="Nueva silueta de calza corta, disponible muy pronto en los mismos colores de la colección."
+          desc="Calzas cortas de tiro alto, silueta ceñida y el mismo ajuste sin costuras que el resto de la colección."
+          items={CALZAS_CORTAS}
         />
       </div>
     </section>

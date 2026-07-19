@@ -1,30 +1,34 @@
-import onyxTopHero from '../assets/photos/onyx_top_hero.jpg'
-import onyxTopSec from '../assets/photos/onyx_top_sec.jpg'
-import onyxCropHero from '../assets/photos/onyx_crop_hero.jpg'
-import onyxCropSec from '../assets/photos/onyx_crop_sec.jpg'
-import onyxBikersHero from '../assets/photos/onyx_bikers_hero.jpg'
-import onyxBikersSec from '../assets/photos/onyx_bikers_sec.jpg'
-import cloudTopHero from '../assets/photos/cloud_top_hero.jpg'
-import cloudTopSec from '../assets/photos/cloud_top_sec.jpg'
-import orchidCropHero from '../assets/photos/orchid_crop_hero.jpg'
-import orchidCropSec from '../assets/photos/orchid_crop_sec.jpg'
-import orchidBikersHero from '../assets/photos/orchid_bikers_hero.jpg'
-import orchidBikersSec from '../assets/photos/orchid_bikers_sec.jpg'
-import mintCropHero from '../assets/photos/mint_crop_hero.jpg'
-import mintCropSec from '../assets/photos/mint_crop_sec.jpg'
-import mintBikersHero from '../assets/photos/mint_bikers_hero.jpg'
-import mintBikersSec from '../assets/photos/mint_bikers_sec.jpg'
-import fucsiaCropHero from '../assets/photos/fucsia_crop_hero.jpg'
-import fucsiaCropSec from '../assets/photos/fucsia_crop_sec.jpg'
-import fucsiaBikersHero from '../assets/photos/fucsia_bikers_hero.jpg'
-import fucsiaBikersSec from '../assets/photos/fucsia_bikers_sec.jpg'
-import cacaoCropHero from '../assets/photos/cacao_crop_hero.jpg'
-import cacaoCropSec from '../assets/photos/cacao_crop_sec.jpg'
-import cacaoBikersHero from '../assets/photos/cacao_bikers_hero.jpg'
-import cobaltoCropHero from '../assets/photos/cobalto_crop_hero.jpg'
-import cobaltoCropSec from '../assets/photos/cobalto_crop_sec.jpg'
-import cobaltoBikersHero from '../assets/photos/cobalto_bikers_hero.jpg'
-import cobaltoBikersSec from '../assets/photos/cobalto_bikers_sec.jpg'
+import auraAzulHero from '../assets/photos/aura_azul_hero.jpg'
+import auraAzulSec from '../assets/photos/aura_azul_sec.jpg'
+import auraCacaoHero from '../assets/photos/aura_cacao_hero.jpg'
+import auraCacaoSec from '../assets/photos/aura_cacao_sec.jpg'
+import auraFucsiaHero from '../assets/photos/aura_fucsia_hero.jpg'
+import auraFucsiaSec from '../assets/photos/aura_fucsia_sec.jpg'
+import auraLilaHero from '../assets/photos/aura_lila_hero.jpg'
+import auraMentaHero from '../assets/photos/aura_menta_hero.jpg'
+import auraMentaSec from '../assets/photos/aura_menta_sec.jpg'
+import auraNegroHero from '../assets/photos/aura_negro_hero.jpg'
+import auraNegroSec from '../assets/photos/aura_negro_sec.jpg'
+
+import novaAzulHero from '../assets/photos/nova_azul_hero.jpg'
+import novaAzulSec from '../assets/photos/nova_azul_sec.jpg'
+import novaCacaoHero from '../assets/photos/nova_cacao_hero.jpg'
+import novaCacaoSec from '../assets/photos/nova_cacao_sec.jpg'
+import novaLilaHero from '../assets/photos/nova_lila_hero.jpg'
+import novaLilaSec from '../assets/photos/nova_lila_sec.jpg'
+import novaMentaHero from '../assets/photos/nova_menta_hero.jpg'
+import novaMentaSec from '../assets/photos/nova_menta_sec.jpg'
+import novaNegroHero from '../assets/photos/nova_negro_hero.jpg'
+
+import croptopBlancoHero from '../assets/photos/croptop_blanco_hero.jpg'
+import croptopBlancoSec from '../assets/photos/croptop_blanco_sec.jpg'
+import croptopNegroHero from '../assets/photos/croptop_negro_hero.jpg'
+import croptopNegroSec from '../assets/photos/croptop_negro_sec.jpg'
+
+import bikerFucsiaHero from '../assets/photos/biker_fucsia_hero.jpg'
+import bikerAzulHero from '../assets/photos/biker_azul_hero.jpg'
+import bikerMentaHero from '../assets/photos/biker_menta_hero.jpg'
+import bikerNegroHero from '../assets/photos/biker_negro_hero.jpg'
 
 export type Product = {
   line: string
@@ -37,27 +41,34 @@ export type Product = {
 
 export const SIZES = 'XS · S · M · L · XL'
 
-export const TOPS: Product[] = [
-  { line: 'Top Essential', colorway: 'Onyx', hex: '#1b1a18', hero: onyxTopHero, sec: onyxTopSec, price: 145 },
-  { line: 'Top Essential', colorway: 'Cloud', hex: '#f3efe6', hero: cloudTopHero, sec: cloudTopSec, price: 145 },
+// Colores reales disponibles en las fotos entregadas (2026-07-18).
+export const TOP_AURA: Product[] = [
+  { line: 'Top Aura', colorway: 'Negro', hex: '#1a1a1a', hero: auraNegroHero, sec: auraNegroSec, price: 175 },
+  { line: 'Top Aura', colorway: 'Azul', hex: '#2f4fd6', hero: auraAzulHero, sec: auraAzulSec, price: 175 },
+  { line: 'Top Aura', colorway: 'Fucsia', hex: '#ec1f8f', hero: auraFucsiaHero, sec: auraFucsiaSec, price: 175 },
+  { line: 'Top Aura', colorway: 'Menta', hex: '#8fe0d4', hero: auraMentaHero, sec: auraMentaSec, price: 175 },
+  { line: 'Top Aura', colorway: 'Lila', hex: '#b98ee0', hero: auraLilaHero, sec: auraLilaHero, price: 175 },
+  { line: 'Top Aura', colorway: 'Cacao', hex: '#a98a95', hero: auraCacaoHero, sec: auraCacaoSec, price: 175 },
 ]
 
-export const CROPTOPS: Product[] = [
-  { line: 'Croptop Aura', colorway: 'Onyx', hex: '#1b1a18', hero: onyxCropHero, sec: onyxCropSec, price: 175 },
-  { line: 'Croptop Aura', colorway: 'Orquídea', hex: '#b47bc7', hero: orchidCropHero, sec: orchidCropSec, price: 175 },
-  { line: 'Croptop Aura', colorway: 'Menta', hex: '#cfe7dc', hero: mintCropHero, sec: mintCropSec, price: 175 },
-  { line: 'Croptop Aura', colorway: 'Fucsia', hex: '#ee1c79', hero: fucsiaCropHero, sec: fucsiaCropSec, price: 175 },
-  { line: 'Croptop Aura', colorway: 'Cacao', hex: '#b48f78', hero: cacaoCropHero, sec: cacaoCropSec, price: 175 },
-  { line: 'Croptop Aura', colorway: 'Cobalto', hex: '#2b3aa0', hero: cobaltoCropHero, sec: cobaltoCropSec, price: 175 },
+export const TOP_NOVA: Product[] = [
+  { line: 'Top Nova', colorway: 'Negro', hex: '#1a1a1a', hero: novaNegroHero, sec: novaNegroHero, price: 175 },
+  { line: 'Top Nova', colorway: 'Azul', hex: '#2f4fd6', hero: novaAzulHero, sec: novaAzulSec, price: 175 },
+  { line: 'Top Nova', colorway: 'Menta', hex: '#8fe0d4', hero: novaMentaHero, sec: novaMentaSec, price: 175 },
+  { line: 'Top Nova', colorway: 'Lila', hex: '#b98ee0', hero: novaLilaHero, sec: novaLilaSec, price: 175 },
+  { line: 'Top Nova', colorway: 'Cacao', hex: '#a98a95', hero: novaCacaoHero, sec: novaCacaoSec, price: 175 },
 ]
 
-export const BIKERS: Product[] = [
-  { line: 'Bikers Flow', colorway: 'Onyx', hex: '#1b1a18', hero: onyxBikersHero, sec: onyxBikersSec, price: 185 },
-  { line: 'Bikers Flow', colorway: 'Orquídea', hex: '#b47bc7', hero: orchidBikersHero, sec: orchidBikersSec, price: 185 },
-  { line: 'Bikers Flow', colorway: 'Menta', hex: '#cfe7dc', hero: mintBikersHero, sec: mintBikersSec, price: 185 },
-  { line: 'Bikers Flow', colorway: 'Fucsia', hex: '#ee1c79', hero: fucsiaBikersHero, sec: fucsiaBikersSec, price: 185 },
-  { line: 'Bikers Flow', colorway: 'Cacao', hex: '#b48f78', hero: cacaoBikersHero, sec: cacaoCropSec, price: 185 },
-  { line: 'Bikers Flow', colorway: 'Cobalto', hex: '#2b3aa0', hero: cobaltoBikersHero, sec: cobaltoBikersSec, price: 185 },
+export const CROP_TOPS: Product[] = [
+  { line: 'Crop Top', colorway: 'Blanco', hex: '#f5f4f0', hero: croptopBlancoHero, sec: croptopBlancoSec, price: 145 },
+  { line: 'Crop Top', colorway: 'Negro', hex: '#1a1a1a', hero: croptopNegroHero, sec: croptopNegroSec, price: 145 },
+]
+
+export const CALZAS_BIKER: Product[] = [
+  { line: 'Calzas Biker', colorway: 'Negro', hex: '#1a1a1a', hero: bikerNegroHero, sec: bikerNegroHero, price: 185 },
+  { line: 'Calzas Biker', colorway: 'Azul', hex: '#2f4fd6', hero: bikerAzulHero, sec: bikerAzulHero, price: 185 },
+  { line: 'Calzas Biker', colorway: 'Fucsia', hex: '#ec1f8f', hero: bikerFucsiaHero, sec: bikerFucsiaHero, price: 185 },
+  { line: 'Calzas Biker', colorway: 'Menta', hex: '#8fe0d4', hero: bikerMentaHero, sec: bikerMentaHero, price: 185 },
 ]
 
 export function linePalette(items: Product[]) {

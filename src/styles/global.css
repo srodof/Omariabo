@@ -365,6 +365,19 @@ section {
   gap: 36px 26px;
 }
 
+.coming-soon {
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  padding: 48px 24px;
+  text-align: center;
+  font-family: 'Archivo Var', 'Archivo', sans-serif;
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
 .product {
   display: flex;
   flex-direction: column;

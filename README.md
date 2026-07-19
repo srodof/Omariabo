@@ -22,10 +22,10 @@ npm run build:portable    # genera dist-portable/index.html: un único .html sin
 - **[src](src)** — código de la app (secciones, componentes, datos del catálogo, hooks de animación).
 - **[Catalogo](Catalogo)** — copia "portable" del catálogo (`omaria-coleccion-esencia.html`), generada con `npm run build:portable`. Un solo archivo, se puede abrir sin internet o compartir por WhatsApp/email. Regenerarla tras cualquier cambio de contenido.
 - **[Logos](Logos)** — Isotipos, isologotipos y logotipos en distintas variantes de color y formato (`.ai`, `.pdf`, `.png`, `.jpg`), incluyendo la guía de colores corporativos.
-- **[Prendas](Prendas)** — Fotografías de producto originales de las prendas de la colección.
+- **[Imágenes prendas](Imágenes prendas)** — Fotografías de producto originales, organizadas por categoría (`Tops/Top Aura`, `Tops/Top Nova`, `Crop Tops`, `Calzas Biker`, `Calzas Cortas`).
 - **[Referencias](Referencias)** — Imágenes de referencia recopiladas para el desarrollo de la marca y producto.
 
-`Logos/`, `Prendas/` y `Referencias/` son material fuente: la app no los usa directamente (las fotos optimizadas viven en `src/assets/photos/`), así que se excluyen del despliegue en Vercel vía `.vercelignore`.
+`Logos/`, `Imágenes prendas/` y `Referencias/` son material fuente: la app no los usa directamente (las fotos optimizadas viven en `src/assets/photos/`), así que se excluyen del despliegue en Vercel vía `.vercelignore`.
 
 ## Dónde editar el contenido
 

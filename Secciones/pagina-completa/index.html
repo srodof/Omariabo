@@ -1,0 +1,965 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>OMARIA Sportswear — Colección Esencia</title>
+<meta name="description" content="OMARIA Sportswear — catálogo digital de la colección Esencia. Ropa deportiva femenina premium: tops, croptops y calzas." />
+
+<style>
+  /* ============ fonts (local files, no base64) ============ */
+  @font-face {
+    font-family: 'Fraunces Var';
+    src: url('assets/fonts/fraunces-var.woff2') format('woff2');
+    font-weight: 200 700;
+    font-style: normal;
+    font-optical-sizing: auto;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Archivo Var';
+    src: url('assets/fonts/archivo-var.woff2') format('woff2');
+    font-weight: 300 800;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --paper: #f5f6f4;
+    --paper-deep: #e6e7e5;
+    --ink: #231f1a;
+    --ink-soft: #6f6555;
+    --lavender: #9f8eb6;
+    --sage: #7f99a4;
+    --sage-bright: #96adbe;
+    --line: rgba(35, 31, 26, 0.16);
+    --line-on-dark: rgba(238, 230, 216, 0.22);
+    --radius: 2px;
+    --wrap: min(1240px, 92vw);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: auto; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Archivo Var', 'Archivo', sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+
+  .display {
+    font-family: 'Fraunces Var', 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 340;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  .eyebrow {
+    font-family: 'Archivo Var', 'Archivo', sans-serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .eyebrow.on-dark { color: var(--paper); opacity: 0.75; }
+  .eyebrow.accent { color: var(--lavender); }
+
+  .wrap { width: var(--wrap); margin: 0 auto; }
+
+  /* will-reveal: initial state for the scroll reveal (fallback without JS = visible) */
+  .will-reveal { opacity: 1; }
+  .js .will-reveal { opacity: 0; transform: translateY(36px); }
+  .js .will-reveal.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ---------- rail nav ---------- */
+  .railnav {
+    position: fixed;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: flex-end;
+  }
+  .railnav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-family: 'Archivo Var', 'Archivo', sans-serif;
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: 0.55;
+    transition: opacity 0.3s ease;
+  }
+  .railnav a .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--ink-soft);
+    transition: all 0.3s ease;
+  }
+  .railnav a.is-active { opacity: 1; color: var(--ink); }
+  .railnav a.is-active .dot { background: var(--lavender); width: 9px; height: 9px; }
+  .railnav.on-dark a { color: var(--paper); }
+  @media (max-width: 880px) { .railnav { display: none; } }
+
+  /* ---------- cover ---------- */
+  .cover {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--paper);
+    overflow: hidden;
+  }
+  .cover__img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 50% 18%;
+    will-change: transform;
+  }
+  .cover__scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(20,17,13,0.55) 0%, rgba(20,17,13,0.08) 30%, rgba(20,17,13,0.15) 55%, rgba(20,17,13,0.86) 100%);
+  }
+  .cover__top {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; justify-content: space-between;
+    width: var(--wrap); margin: 0 auto; padding-top: 34px;
+  }
+  .cover__mark { display: flex; align-items: center; gap: 12px; }
+  .cover__mark img { height: 34px; width: auto; }
+  .cover__wordmark {
+    font-family: 'Archivo Var', 'Archivo', sans-serif;
+    font-weight: 500; letter-spacing: 0.3em; font-size: 0.78rem; text-transform: uppercase;
+  }
+  .cover__wordmark span {
+    display: block; font-weight: 300; letter-spacing: 0.32em; font-size: 0.56rem; opacity: 0.7; margin-top: 2px;
+  }
+  .cover__bottom { position: relative; z-index: 2; width: var(--wrap); margin: 0 auto; padding-bottom: 56px; }
+  .cover__title { font-size: clamp(4rem, 13vw, 9.5rem); line-height: 0.86; margin: 14px 0 20px; color: var(--paper); }
+  .cover__slogan {
+    font-family: 'Archivo Var', 'Archivo', sans-serif;
+    font-weight: 400; font-size: clamp(1rem, 1.6vw, 1.25rem); max-width: 34ch; color: var(--paper); opacity: 0.92;
+  }
+  .cover__scroll {
+    margin-top: 38px; display: inline-flex; align-items: center; gap: 12px;
+    font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.7;
+    background: none; border: none; color: inherit; cursor: pointer; padding: 6px 0; font-family: inherit;
+  }
+  .cover__scroll::before { content: ''; width: 26px; height: 1px; background: var(--paper); display: block; }
+
+  @keyframes coverImgScaleIn { from { transform: scale(1.08); } to { transform: scale(1); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .cover__img { animation: coverImgScaleIn 1.6s cubic-bezier(0.25,0.46,0.45,0.94) 0.2s both; }
+  .cover .cover-in { opacity: 0; animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) both; }
+  .cover__top.cover-in    { animation-delay: 0.20s; }
+  .cover .eyebrow.cover-in{ animation-delay: 0.32s; }
+  .cover__title.cover-in  { animation-delay: 0.44s; }
+  .cover__slogan.cover-in { animation-delay: 0.56s; }
+  .cover__scroll.cover-in { animation-delay: 0.68s; }
+
+  [data-depth] { transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+  .magnetic { transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cover .cover-in { opacity: 1; animation: none; transform: none; }
+    .cover__img { animation: none; }
+    [data-depth], .magnetic { transition: none; }
+  }
+
+  /* ---------- marquee ---------- */
+  .marquee {
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 22px 0;
+    background: var(--paper);
+  }
+  .marquee__track {
+    display: flex;
+    width: max-content;
+    gap: 3rem;
+    animation: marqueeScroll 26s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee__track { animation: none; }
+  }
+  @keyframes marqueeScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .marquee__track span {
+    font-family: 'Fraunces Var', 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 380;
+    font-style: italic;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: var(--ink-soft);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+  }
+  .marquee__track span::after { content: '·'; color: var(--lavender); margin-left: 3rem; }
+
+  /* ---------- manifesto ---------- */
+  .manifesto { padding: min(14vw, 140px) 0 min(10vw, 110px); text-align: center; }
+  .manifesto p { font-size: clamp(1.4rem, 3vw, 2.1rem); line-height: 1.35; max-width: 22ch; margin: 26px auto 0; }
+
+  /* ---------- section heading ---------- */
+  .section-head { padding: 0 0 46px; display: flex; flex-direction: column; gap: 16px; }
+  .section-head h2 { font-size: clamp(2.4rem, 5vw, 4rem); margin: 0; }
+  .section-head p {
+    font-family: 'Archivo Var', 'Archivo', sans-serif;
+    color: var(--ink-soft); max-width: 52ch; font-size: 1rem; line-height: 1.6; margin: 0;
+  }
+
+  section { position: relative; }
+  .section-pad { padding: min(9vw, 96px) 0; }
+
+  /* ---------- category block ---------- */
+  .category { padding-top: min(7vw, 72px); }
+  .category:first-of-type { padding-top: 0; }
+  .category__head {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 24px;
+    border-top: 1px solid var(--line); padding-top: 26px; margin-bottom: 34px; flex-wrap: wrap;
+  }
+  .category__head h3 { font-size: clamp(1.6rem, 3vw, 2.3rem); margin: 0; }
+  .category__head p {
+    font-family: 'Archivo Var', 'Archivo', sans-serif;
+    color: var(--ink-soft); max-width: 46ch; margin: 0; font-size: 0.94rem; line-height: 1.55;
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 36px 26px; }
+
+  .product { display: flex; flex-direction: column; }
+  .product__frame {
+    position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--paper-deep); border-radius: var(--radius);
+  }
+  .product__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.55s ease; }
+  .product__img--sec { opacity: 0; }
+  .product:hover .product__img--sec, .product:focus-within .product__img--sec { opacity: 1; }
+  .product__price {
+    position: absolute; right: 10px; bottom: 10px;
+    background: rgba(35,31,26,0.82); color: var(--paper);
+    font-family: 'Archivo Var', 'Archivo', sans-serif; font-weight: 600; font-size: 0.74rem; letter-spacing: 0.03em;
+    padding: 6px 10px; border-radius: 2px;
+  }
+  .product__info { padding-top: 14px; }
+  .product__line { font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 4px; }
+  .product__name {
+    font-family: 'Fraunces Var', 'Fraunces', serif; font-optical-sizing: auto; font-weight: 440; font-size: 1.28rem; margin: 0 0 10px;
+  }
+  .product__meta { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .product__colors { display: flex; gap: 6px; }
+  .swatch { width: 14px; height: 14px; border-radius: 50%; background: var(--c); border: 1px solid rgba(35,31,26,0.18); }
+  .swatch.is-active { box-shadow: 0 0 0 2px var(--paper), 0 0 0 3px var(--ink); }
+  .product__sizes { font-family: 'Archivo Var', 'Archivo', sans-serif; font-size: 0.72rem; letter-spacing: 0.06em; color: var(--ink-soft); }
+
+  /* ---------- looks ---------- */
+  .looks-wrap { display: flex; flex-direction: column; gap: min(10vw, 110px); }
+  .look { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: min(6vw, 64px); align-items: center; }
+  .look:nth-child(even) { direction: rtl; }
+  .look:nth-child(even) > * { direction: ltr; }
+  .look__frame { aspect-ratio: 4 / 5; overflow: hidden; border-radius: var(--radius); }
+  .look__frame img { width: 100%; height: 100%; object-fit: cover; }
+  .look__eyebrow { margin-bottom: 14px; }
+  .look h3 { font-size: clamp(2rem, 4vw, 3rem); margin: 0 0 16px; }
+  .look p.desc {
+    font-family: 'Archivo Var', 'Archivo', sans-serif;
+    color: var(--ink-soft); font-size: 1rem; line-height: 1.6; max-width: 44ch; margin: 0 0 22px;
+  }
+  .look__pieces { display: flex; flex-direction: column; gap: 8px; }
+  .look__piece {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Archivo Var', 'Archivo', sans-serif; font-size: 0.86rem;
+    padding-bottom: 8px; border-bottom: 1px solid var(--line);
+  }
+  .look__piece .swatch { width: 11px; height: 11px; }
+  .look__piece b { font-weight: 600; }
+  @media (max-width: 760px) {
+    .look, .look:nth-child(even) { grid-template-columns: 1fr; direction: ltr; }
+  }
+
+  /* ---------- contacto ---------- */
+  .contact { background: var(--ink); color: var(--paper); padding: min(11vw, 120px) 0 46px; }
+  .contact__top { display: grid; grid-template-columns: 1.2fr 1fr; gap: min(8vw, 90px); padding-bottom: min(8vw, 80px); }
+  .contact__mark img { height: 52px; width: auto; margin-bottom: 26px; }
+  .contact h2 { color: var(--paper); font-size: clamp(2.4rem, 5vw, 4rem); margin: 0 0 18px; }
+  .contact__lead {
+    font-family: 'Archivo Var', 'Archivo', sans-serif; color: var(--paper); opacity: 0.78; max-width: 40ch; line-height: 1.6; margin: 0;
+  }
+  .contact__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+  .contact__col h4 {
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sage-bright);
+    margin: 0 0 14px; font-family: 'Archivo Var', 'Archivo', sans-serif; font-weight: 600;
+  }
+  .contact__col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .contact__col li { font-family: 'Archivo Var', 'Archivo', sans-serif; font-size: 0.96rem; }
+  .contact__col li span { display: block; font-size: 0.72rem; color: var(--paper); opacity: 0.55; margin-top: 2px; }
+  .contact__bottom {
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    border-top: 1px solid var(--line-on-dark); padding-top: 30px; flex-wrap: wrap;
+  }
+  .qr {
+    width: 104px; height: 104px; background: var(--paper); border-radius: 4px;
+    display: flex; align-items: center; justify-content: center; padding: 10px;
+  }
+  .qr svg { width: 100%; height: 100%; }
+  .contact__bottom-note {
+    font-family: 'Archivo Var', 'Archivo', sans-serif; font-size: 0.68rem; letter-spacing: 0.04em; color: var(--paper); opacity: 0.5; max-width: 34ch;
+  }
+  .contact__legal { font-family: 'Archivo Var', 'Archivo', sans-serif; font-size: 0.7rem; color: var(--paper); opacity: 0.45; }
+  @media (max-width: 760px) {
+    .contact__top, .contact__cols { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="railnav" id="railnav">
+  <a href="#cover" data-target="cover"><span class="dot"></span>Portada</a>
+  <a href="#coleccion" data-target="coleccion"><span class="dot"></span>Colección</a>
+  <a href="#looks" data-target="looks"><span class="dot"></span>Looks</a>
+  <a href="#contacto" data-target="contacto"><span class="dot"></span>Contacto</a>
+</nav>
+
+<section class="cover" id="cover">
+  <img class="cover__img" src="assets/photos/cover.jpg" alt="Modelo usando crop top blanco y calza lila OMARIA" />
+  <div class="cover__scrim"></div>
+  <div class="cover__top cover-in">
+    <div class="cover__mark" data-depth="0.4">
+      <img src="assets/photos/isotipo-white.png" alt="Isotipo OMARIA" />
+      <div class="cover__wordmark">Omaria<span>Sportswear</span></div>
+    </div>
+    <div class="eyebrow on-dark">Catálogo digital</div>
+  </div>
+  <div class="cover__bottom wrap">
+    <div class="eyebrow on-dark cover-in" data-depth="0.6">Colección 2026</div>
+    <h1 class="cover__title display cover-in" data-depth="1">Esencia</h1>
+    <p class="cover__slogan cover-in" data-depth="0.8">
+      Fuerza que se mueve contigo. Prendas deportivas diseñadas para acompañar cada versión de ti.
+    </p>
+    <button class="cover__scroll cover-in magnetic" id="scrollBtn">Descubre la colección</button>
+  </div>
+</section>
+
+<section class="manifesto wrap" id="manifesto">
+  <div class="eyebrow accent will-reveal">Nuestra filosofía</div>
+  <p class="display will-reveal" data-delay="0.1">
+    Diseñamos para el cuerpo en movimiento — un ajuste que se siente propio y un carácter que no pasa desapercibido.
+  </p>
+</section>
+
+<div class="marquee">
+  <div class="marquee__track"><span>FUERZA</span><span>MOVIMIENTO</span><span>ESTILO</span><span>EMPODERAMIENTO</span><span>RENDIMIENTO</span><span>FUERZA</span><span>MOVIMIENTO</span><span>ESTILO</span><span>EMPODERAMIENTO</span><span>RENDIMIENTO</span></div>
+</div>
+
+<section class="section-pad" id="coleccion">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow accent will-reveal">Colección principal</div>
+      <h2 class="display will-reveal" data-delay="0.05">La colección</h2>
+      <p class="will-reveal" data-delay="0.1">
+        Cinco líneas pensadas para moverse juntas: dos siluetas de top deportivo, un crop top de
+        algodón, calzas biker de tiro alto y calzas cortas — con el mismo ajuste OMARIA en cada color.
+      </p>
+    </div>
+
+    <div class="category" id="cat-top-aura">
+      <div class="category__head">
+        <h3 class="display will-reveal">Top Aura</h3>
+        <p class="will-reveal" data-delay="0.05">Top deportivo con espalda cruzada y tiras dobles — soporte con estilo para cualquier entrenamiento.</p>
+      </div>
+      <div class="grid"><article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/aura_negro_hero.jpg" alt="Top Aura Negro — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/aura_negro_sec.jpg" alt="Top Aura Negro — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 175</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Top Aura</div>
+            <h4 class="product__name">Negro</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch is-active" style="--c:#1a1a1a" title="Negro"></span><span class="swatch" style="--c:#2f4fd6" title="Azul"></span><span class="swatch" style="--c:#ec1f8f" title="Fucsia"></span><span class="swatch" style="--c:#8fe0d4" title="Menta"></span><span class="swatch" style="--c:#b98ee0" title="Lila"></span><span class="swatch" style="--c:#a98a95" title="Cacao"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article>
+<article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/aura_azul_hero.jpg" alt="Top Aura Azul — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/aura_azul_sec.jpg" alt="Top Aura Azul — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 175</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Top Aura</div>
+            <h4 class="product__name">Azul</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch" style="--c:#1a1a1a" title="Negro"></span><span class="swatch is-active" style="--c:#2f4fd6" title="Azul"></span><span class="swatch" style="--c:#ec1f8f" title="Fucsia"></span><span class="swatch" style="--c:#8fe0d4" title="Menta"></span><span class="swatch" style="--c:#b98ee0" title="Lila"></span><span class="swatch" style="--c:#a98a95" title="Cacao"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article>
+<article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/aura_fucsia_hero.jpg" alt="Top Aura Fucsia — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/aura_fucsia_sec.jpg" alt="Top Aura Fucsia — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 175</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Top Aura</div>
+            <h4 class="product__name">Fucsia</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch" style="--c:#1a1a1a" title="Negro"></span><span class="swatch" style="--c:#2f4fd6" title="Azul"></span><span class="swatch is-active" style="--c:#ec1f8f" title="Fucsia"></span><span class="swatch" style="--c:#8fe0d4" title="Menta"></span><span class="swatch" style="--c:#b98ee0" title="Lila"></span><span class="swatch" style="--c:#a98a95" title="Cacao"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article>
+<article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/aura_menta_hero.jpg" alt="Top Aura Menta — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/aura_menta_sec.jpg" alt="Top Aura Menta — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 175</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Top Aura</div>
+            <h4 class="product__name">Menta</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch" style="--c:#1a1a1a" title="Negro"></span><span class="swatch" style="--c:#2f4fd6" title="Azul"></span><span class="swatch" style="--c:#ec1f8f" title="Fucsia"></span><span class="swatch is-active" style="--c:#8fe0d4" title="Menta"></span><span class="swatch" style="--c:#b98ee0" title="Lila"></span><span class="swatch" style="--c:#a98a95" title="Cacao"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article>
+<article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/aura_lila_hero.jpg" alt="Top Aura Lila — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/aura_lila_hero.jpg" alt="Top Aura Lila — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 175</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Top Aura</div>
+            <h4 class="product__name">Lila</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch" style="--c:#1a1a1a" title="Negro"></span><span class="swatch" style="--c:#2f4fd6" title="Azul"></span><span class="swatch" style="--c:#ec1f8f" title="Fucsia"></span><span class="swatch" style="--c:#8fe0d4" title="Menta"></span><span class="swatch is-active" style="--c:#b98ee0" title="Lila"></span><span class="swatch" style="--c:#a98a95" title="Cacao"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article>
+<article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/aura_cacao_hero.jpg" alt="Top Aura Cacao — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/aura_cacao_sec.jpg" alt="Top Aura Cacao — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 175</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Top Aura</div>
+            <h4 class="product__name">Cacao</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch" style="--c:#1a1a1a" title="Negro"></span><span class="swatch" style="--c:#2f4fd6" title="Azul"></span><span class="swatch" style="--c:#ec1f8f" title="Fucsia"></span><span class="swatch" style="--c:#8fe0d4" title="Menta"></span><span class="swatch" style="--c:#b98ee0" title="Lila"></span><span class="swatch is-active" style="--c:#a98a95" title="Cacao"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article></div>
+    </div>
+
+    <div class="category" id="cat-top-nova">
+      <div class="category__head">
+        <h3 class="display will-reveal">Top Nova</h3>
+        <p class="will-reveal" data-delay="0.05">Top deportivo racerback con recorte trasero — silueta más deportiva, ajuste igual de cómodo.</p>
+      </div>
+      <div class="grid"><article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/nova_negro_hero.jpg" alt="Top Nova Negro — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/nova_negro_hero.jpg" alt="Top Nova Negro — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 175</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Top Nova</div>
+            <h4 class="product__name">Negro</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch is-active" style="--c:#1a1a1a" title="Negro"></span><span class="swatch" style="--c:#2f4fd6" title="Azul"></span><span class="swatch" style="--c:#8fe0d4" title="Menta"></span><span class="swatch" style="--c:#b98ee0" title="Lila"></span><span class="swatch" style="--c:#a98a95" title="Cacao"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article>
+<article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/nova_azul_hero.jpg" alt="Top Nova Azul — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/nova_azul_sec.jpg" alt="Top Nova Azul — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 175</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Top Nova</div>
+            <h4 class="product__name">Azul</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch" style="--c:#1a1a1a" title="Negro"></span><span class="swatch is-active" style="--c:#2f4fd6" title="Azul"></span><span class="swatch" style="--c:#8fe0d4" title="Menta"></span><span class="swatch" style="--c:#b98ee0" title="Lila"></span><span class="swatch" style="--c:#a98a95" title="Cacao"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article>
+<article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/nova_menta_hero.jpg" alt="Top Nova Menta — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/nova_menta_sec.jpg" alt="Top Nova Menta — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 175</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Top Nova</div>
+            <h4 class="product__name">Menta</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch" style="--c:#1a1a1a" title="Negro"></span><span class="swatch" style="--c:#2f4fd6" title="Azul"></span><span class="swatch is-active" style="--c:#8fe0d4" title="Menta"></span><span class="swatch" style="--c:#b98ee0" title="Lila"></span><span class="swatch" style="--c:#a98a95" title="Cacao"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article>
+<article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/nova_lila_hero.jpg" alt="Top Nova Lila — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/nova_lila_sec.jpg" alt="Top Nova Lila — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 175</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Top Nova</div>
+            <h4 class="product__name">Lila</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch" style="--c:#1a1a1a" title="Negro"></span><span class="swatch" style="--c:#2f4fd6" title="Azul"></span><span class="swatch" style="--c:#8fe0d4" title="Menta"></span><span class="swatch is-active" style="--c:#b98ee0" title="Lila"></span><span class="swatch" style="--c:#a98a95" title="Cacao"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article>
+<article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/nova_cacao_hero.jpg" alt="Top Nova Cacao — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/nova_cacao_sec.jpg" alt="Top Nova Cacao — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 175</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Top Nova</div>
+            <h4 class="product__name">Cacao</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch" style="--c:#1a1a1a" title="Negro"></span><span class="swatch" style="--c:#2f4fd6" title="Azul"></span><span class="swatch" style="--c:#8fe0d4" title="Menta"></span><span class="swatch" style="--c:#b98ee0" title="Lila"></span><span class="swatch is-active" style="--c:#a98a95" title="Cacao"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article></div>
+    </div>
+
+    <div class="category" id="cat-croptops">
+      <div class="category__head">
+        <h3 class="display will-reveal">Crop Tops</h3>
+        <p class="will-reveal" data-delay="0.05">Crop tops de algodón suave, silueta relajada y cuello redondo — la base perfecta para capas o para lucir solos.</p>
+      </div>
+      <div class="grid"><article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/croptop_blanco_hero.jpg" alt="Crop Top Blanco — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/croptop_blanco_sec.jpg" alt="Crop Top Blanco — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 145</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Crop Top</div>
+            <h4 class="product__name">Blanco</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch is-active" style="--c:#f5f4f0" title="Blanco"></span><span class="swatch" style="--c:#1a1a1a" title="Negro"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article>
+<article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/croptop_negro_hero.jpg" alt="Crop Top Negro — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/croptop_negro_sec.jpg" alt="Crop Top Negro — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 145</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Crop Top</div>
+            <h4 class="product__name">Negro</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch" style="--c:#f5f4f0" title="Blanco"></span><span class="swatch is-active" style="--c:#1a1a1a" title="Negro"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article></div>
+    </div>
+
+    <div class="category" id="cat-bikers">
+      <div class="category__head">
+        <h3 class="display will-reveal">Calzas Biker</h3>
+        <p class="will-reveal" data-delay="0.05">Shorts biker de tiro alto, silueta ceñida y cintura ancha sin costuras visibles.</p>
+      </div>
+      <div class="grid"><article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/biker_negro_hero.jpg" alt="Calzas Biker Negro — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/biker_negro_hero.jpg" alt="Calzas Biker Negro — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 185</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Calzas Biker</div>
+            <h4 class="product__name">Negro</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch is-active" style="--c:#1a1a1a" title="Negro"></span><span class="swatch" style="--c:#2f4fd6" title="Azul"></span><span class="swatch" style="--c:#ec1f8f" title="Fucsia"></span><span class="swatch" style="--c:#8fe0d4" title="Menta"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article>
+<article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/biker_azul_hero.jpg" alt="Calzas Biker Azul — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/biker_azul_hero.jpg" alt="Calzas Biker Azul — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 185</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Calzas Biker</div>
+            <h4 class="product__name">Azul</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch" style="--c:#1a1a1a" title="Negro"></span><span class="swatch is-active" style="--c:#2f4fd6" title="Azul"></span><span class="swatch" style="--c:#ec1f8f" title="Fucsia"></span><span class="swatch" style="--c:#8fe0d4" title="Menta"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article>
+<article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/biker_fucsia_hero.jpg" alt="Calzas Biker Fucsia — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/biker_fucsia_hero.jpg" alt="Calzas Biker Fucsia — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 185</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Calzas Biker</div>
+            <h4 class="product__name">Fucsia</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch" style="--c:#1a1a1a" title="Negro"></span><span class="swatch" style="--c:#2f4fd6" title="Azul"></span><span class="swatch is-active" style="--c:#ec1f8f" title="Fucsia"></span><span class="swatch" style="--c:#8fe0d4" title="Menta"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article>
+<article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/biker_menta_hero.jpg" alt="Calzas Biker Menta — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/biker_menta_hero.jpg" alt="Calzas Biker Menta — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 185</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Calzas Biker</div>
+            <h4 class="product__name">Menta</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch" style="--c:#1a1a1a" title="Negro"></span><span class="swatch" style="--c:#2f4fd6" title="Azul"></span><span class="swatch" style="--c:#ec1f8f" title="Fucsia"></span><span class="swatch is-active" style="--c:#8fe0d4" title="Menta"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article></div>
+    </div>
+
+    <div class="category" id="cat-cortas">
+      <div class="category__head">
+        <h3 class="display will-reveal">Calzas Cortas</h3>
+        <p class="will-reveal" data-delay="0.05">Calzas cortas de tiro alto, silueta ceñida y el mismo ajuste sin costuras que el resto de la colección.</p>
+      </div>
+      <div class="grid"><article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/cortas_negro_hero.jpg" alt="Calzas Cortas Negro — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/cortas_negro_sec.jpg" alt="Calzas Cortas Negro — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 175</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Calzas Cortas</div>
+            <h4 class="product__name">Negro</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch is-active" style="--c:#1a1a1a" title="Negro"></span><span class="swatch" style="--c:#2f4fd6" title="Azul"></span><span class="swatch" style="--c:#ec1f8f" title="Fucsia"></span><span class="swatch" style="--c:#8fe0d4" title="Menta"></span><span class="swatch" style="--c:#b98ee0" title="Lila"></span><span class="swatch" style="--c:#a98a95" title="Cacao"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article>
+<article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/cortas_azul_hero.jpg" alt="Calzas Cortas Azul — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/cortas_azul_sec.jpg" alt="Calzas Cortas Azul — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 175</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Calzas Cortas</div>
+            <h4 class="product__name">Azul</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch" style="--c:#1a1a1a" title="Negro"></span><span class="swatch is-active" style="--c:#2f4fd6" title="Azul"></span><span class="swatch" style="--c:#ec1f8f" title="Fucsia"></span><span class="swatch" style="--c:#8fe0d4" title="Menta"></span><span class="swatch" style="--c:#b98ee0" title="Lila"></span><span class="swatch" style="--c:#a98a95" title="Cacao"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article>
+<article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/cortas_fucsia_hero.jpg" alt="Calzas Cortas Fucsia — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/cortas_fucsia_sec.jpg" alt="Calzas Cortas Fucsia — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 175</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Calzas Cortas</div>
+            <h4 class="product__name">Fucsia</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch" style="--c:#1a1a1a" title="Negro"></span><span class="swatch" style="--c:#2f4fd6" title="Azul"></span><span class="swatch is-active" style="--c:#ec1f8f" title="Fucsia"></span><span class="swatch" style="--c:#8fe0d4" title="Menta"></span><span class="swatch" style="--c:#b98ee0" title="Lila"></span><span class="swatch" style="--c:#a98a95" title="Cacao"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article>
+<article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/cortas_menta_hero.jpg" alt="Calzas Cortas Menta — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/cortas_menta_sec.jpg" alt="Calzas Cortas Menta — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 175</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Calzas Cortas</div>
+            <h4 class="product__name">Menta</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch" style="--c:#1a1a1a" title="Negro"></span><span class="swatch" style="--c:#2f4fd6" title="Azul"></span><span class="swatch" style="--c:#ec1f8f" title="Fucsia"></span><span class="swatch is-active" style="--c:#8fe0d4" title="Menta"></span><span class="swatch" style="--c:#b98ee0" title="Lila"></span><span class="swatch" style="--c:#a98a95" title="Cacao"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article>
+<article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/cortas_lila_hero.jpg" alt="Calzas Cortas Lila — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/cortas_lila_sec.jpg" alt="Calzas Cortas Lila — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 175</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Calzas Cortas</div>
+            <h4 class="product__name">Lila</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch" style="--c:#1a1a1a" title="Negro"></span><span class="swatch" style="--c:#2f4fd6" title="Azul"></span><span class="swatch" style="--c:#ec1f8f" title="Fucsia"></span><span class="swatch" style="--c:#8fe0d4" title="Menta"></span><span class="swatch is-active" style="--c:#b98ee0" title="Lila"></span><span class="swatch" style="--c:#a98a95" title="Cacao"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article>
+<article class="product will-reveal tilt">
+          <div class="product__frame">
+            <img class="product__img product__img--hero" src="assets/photos/cortas_cacao_hero.jpg" alt="Calzas Cortas Cacao — fotografía principal" loading="lazy">
+            <img class="product__img product__img--sec" src="assets/photos/cortas_cacao_sec.jpg" alt="Calzas Cortas Cacao — detalle secundario" loading="lazy">
+            <span class="product__price">Bs 175</span>
+          </div>
+          <div class="product__info">
+            <div class="product__line">Calzas Cortas</div>
+            <h4 class="product__name">Cacao</h4>
+            <div class="product__meta">
+              <div class="product__colors" aria-label="Colores disponibles"><span class="swatch" style="--c:#1a1a1a" title="Negro"></span><span class="swatch" style="--c:#2f4fd6" title="Azul"></span><span class="swatch" style="--c:#ec1f8f" title="Fucsia"></span><span class="swatch" style="--c:#8fe0d4" title="Menta"></span><span class="swatch" style="--c:#b98ee0" title="Lila"></span><span class="swatch is-active" style="--c:#a98a95" title="Cacao"></span></div>
+              <div class="product__sizes">XS · S · M · L · XL</div>
+            </div>
+          </div>
+        </article></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="looks" style="background:var(--paper-deep);">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow accent will-reveal">Looks completos</div>
+      <h2 class="display will-reveal" data-delay="0.05">Combina la colección</h2>
+      <p class="will-reveal" data-delay="0.1">Cuatro formas de llevar OMARIA de principio a fin, combinando piezas de las tres líneas.</p>
+    </div>
+    <div class="looks-wrap"><article class="look will-reveal">
+          <div class="look__frame will-reveal tilt">
+            <img src="assets/photos/aura_negro_hero.jpg" alt="Look Mood Onyx" loading="lazy">
+          </div>
+          <div class="will-reveal" data-delay="0.1">
+            <div class="eyebrow accent look__eyebrow">Look 01</div>
+            <h3 class="display">Mood Onyx</h3>
+            <p class="desc">Top Aura Negro + Calzas Biker Negro — el total black para entrenar con actitud, de la sala de pesas al after.</p>
+            <div class="look__pieces"><div class="look__piece"><span class="swatch" style="--c:#1a1a1a"></span><span><b>Top Aura</b> Negro</span></div><div class="look__piece"><span class="swatch" style="--c:#1a1a1a"></span><span><b>Calzas Biker</b> Negro</span></div></div>
+          </div>
+        </article>
+<article class="look will-reveal">
+          <div class="look__frame will-reveal tilt">
+            <img src="assets/photos/aura_fucsia_hero.jpg" alt="Look Fucsia Energy" loading="lazy">
+          </div>
+          <div class="will-reveal" data-delay="0.1">
+            <div class="eyebrow accent look__eyebrow">Look 02</div>
+            <h3 class="display">Fucsia Energy</h3>
+            <p class="desc">Top Aura Fucsia + Calzas Biker Fucsia — el color que no pasa desapercibido, ideal para clases de alta intensidad.</p>
+            <div class="look__pieces"><div class="look__piece"><span class="swatch" style="--c:#ec1f8f"></span><span><b>Top Aura</b> Fucsia</span></div><div class="look__piece"><span class="swatch" style="--c:#ec1f8f"></span><span><b>Calzas Biker</b> Fucsia</span></div></div>
+          </div>
+        </article>
+<article class="look will-reveal">
+          <div class="look__frame will-reveal tilt">
+            <img src="assets/photos/nova_menta_hero.jpg" alt="Look Menta Fresh" loading="lazy">
+          </div>
+          <div class="will-reveal" data-delay="0.1">
+            <div class="eyebrow accent look__eyebrow">Look 03</div>
+            <h3 class="display">Menta Fresh</h3>
+            <p class="desc">Top Nova Menta + Calzas Biker Menta — un tono suave y versátil para yoga, pilates o el día a día.</p>
+            <div class="look__pieces"><div class="look__piece"><span class="swatch" style="--c:#8fe0d4"></span><span><b>Top Nova</b> Menta</span></div><div class="look__piece"><span class="swatch" style="--c:#8fe0d4"></span><span><b>Calzas Biker</b> Menta</span></div></div>
+          </div>
+        </article>
+<article class="look will-reveal">
+          <div class="look__frame will-reveal tilt">
+            <img src="assets/photos/nova_lila_hero.jpg" alt="Look Bloom Lila" loading="lazy">
+          </div>
+          <div class="will-reveal" data-delay="0.1">
+            <div class="eyebrow accent look__eyebrow">Look 04</div>
+            <h3 class="display">Bloom Lila</h3>
+            <p class="desc">Top Nova Lila — silueta racerback en un tono lila que combina con básicos negros o blancos.</p>
+            <div class="look__pieces"><div class="look__piece"><span class="swatch" style="--c:#b98ee0"></span><span><b>Top Nova</b> Lila</span></div></div>
+          </div>
+        </article></div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <div class="contact__top">
+      <div class="will-reveal">
+        <div class="contact__mark"><img src="assets/photos/isotipo-white.png" alt="Isotipo OMARIA" /></div>
+        <h2 class="display">Hablemos</h2>
+        <p class="contact__lead">Para pedidos al por mayor, distribución o alianzas comerciales, este es un espacio listo para tu información de contacto real.</p>
+      </div>
+      <div class="contact__cols will-reveal" data-delay="0.1">
+        <div class="contact__col">
+          <h4>Redes sociales</h4>
+          <ul>
+            <li>Instagram<span>@omaria.sportswear</span></li>
+            <li>TikTok<span>@omaria.sportswear</span></li>
+          </ul>
+        </div>
+        <div class="contact__col">
+          <h4>Comercial</h4>
+          <ul>
+            <li>Sitio web<span>www.omaria.com</span></li>
+            <li>Mayoreo y distribución<span>ventas@omaria.com</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="contact__bottom will-reveal" data-delay="0.15">
+      <div style="display:flex; align-items:center; gap:18px;">
+        <div class="qr"><svg viewBox="0 0 100 100" fill="#231f1a" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder de código QR"><rect x="0" y="0" width="6.666666666666667" height="6.666666666666667"></rect><rect x="0" y="6.666666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="0" y="13.333333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="0" y="20" width="6.666666666666667" height="6.666666666666667"></rect><rect x="0" y="26.666666666666668" width="6.666666666666667" height="6.666666666666667"></rect><rect x="0" y="33.333333333333336" width="6.666666666666667" height="6.666666666666667"></rect><rect x="0" y="40" width="6.666666666666667" height="6.666666666666667"></rect><rect x="0" y="53.333333333333336" width="6.666666666666667" height="6.666666666666667"></rect><rect x="0" y="60" width="6.666666666666667" height="6.666666666666667"></rect><rect x="0" y="66.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="0" y="73.33333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="0" y="80" width="6.666666666666667" height="6.666666666666667"></rect><rect x="0" y="86.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="0" y="93.33333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="6.666666666666667" y="0" width="6.666666666666667" height="6.666666666666667"></rect><rect x="6.666666666666667" y="6.666666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="6.666666666666667" y="40" width="6.666666666666667" height="6.666666666666667"></rect><rect x="6.666666666666667" y="53.333333333333336" width="6.666666666666667" height="6.666666666666667"></rect><rect x="6.666666666666667" y="66.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="6.666666666666667" y="80" width="6.666666666666667" height="6.666666666666667"></rect><rect x="6.666666666666667" y="86.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="6.666666666666667" y="93.33333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="13.333333333333334" y="0" width="6.666666666666667" height="6.666666666666667"></rect><rect x="13.333333333333334" y="13.333333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="13.333333333333334" y="20" width="6.666666666666667" height="6.666666666666667"></rect><rect x="13.333333333333334" y="26.666666666666668" width="6.666666666666667" height="6.666666666666667"></rect><rect x="13.333333333333334" y="33.333333333333336" width="6.666666666666667" height="6.666666666666667"></rect><rect x="13.333333333333334" y="40" width="6.666666666666667" height="6.666666666666667"></rect><rect x="13.333333333333334" y="46.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="13.333333333333334" y="53.333333333333336" width="6.666666666666667" height="6.666666666666667"></rect><rect x="13.333333333333334" y="60" width="6.666666666666667" height="6.666666666666667"></rect><rect x="13.333333333333334" y="66.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="13.333333333333334" y="73.33333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="13.333333333333334" y="80" width="6.666666666666667" height="6.666666666666667"></rect><rect x="13.333333333333334" y="86.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="13.333333333333334" y="93.33333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="20" y="0" width="6.666666666666667" height="6.666666666666667"></rect><rect x="20" y="13.333333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="20" y="20" width="6.666666666666667" height="6.666666666666667"></rect><rect x="20" y="26.666666666666668" width="6.666666666666667" height="6.666666666666667"></rect><rect x="20" y="40" width="6.666666666666667" height="6.666666666666667"></rect><rect x="20" y="53.333333333333336" width="6.666666666666667" height="6.666666666666667"></rect><rect x="20" y="66.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="20" y="73.33333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="20" y="80" width="6.666666666666667" height="6.666666666666667"></rect><rect x="20" y="86.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="20" y="93.33333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="26.666666666666668" y="0" width="6.666666666666667" height="6.666666666666667"></rect><rect x="26.666666666666668" y="13.333333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="26.666666666666668" y="20" width="6.666666666666667" height="6.666666666666667"></rect><rect x="26.666666666666668" y="26.666666666666668" width="6.666666666666667" height="6.666666666666667"></rect><rect x="26.666666666666668" y="40" width="6.666666666666667" height="6.666666666666667"></rect><rect x="26.666666666666668" y="46.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="26.666666666666668" y="53.333333333333336" width="6.666666666666667" height="6.666666666666667"></rect><rect x="26.666666666666668" y="66.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="26.666666666666668" y="73.33333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="26.666666666666668" y="80" width="6.666666666666667" height="6.666666666666667"></rect><rect x="26.666666666666668" y="86.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="26.666666666666668" y="93.33333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="33.333333333333336" y="0" width="6.666666666666667" height="6.666666666666667"></rect><rect x="33.333333333333336" y="13.333333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="33.333333333333336" y="20" width="6.666666666666667" height="6.666666666666667"></rect><rect x="33.333333333333336" y="40" width="6.666666666666667" height="6.666666666666667"></rect><rect x="33.333333333333336" y="53.333333333333336" width="6.666666666666667" height="6.666666666666667"></rect><rect x="33.333333333333336" y="80" width="6.666666666666667" height="6.666666666666667"></rect><rect x="33.333333333333336" y="86.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="33.333333333333336" y="93.33333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="40" y="0" width="6.666666666666667" height="6.666666666666667"></rect><rect x="40" y="6.666666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="40" y="13.333333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="40" y="20" width="6.666666666666667" height="6.666666666666667"></rect><rect x="40" y="26.666666666666668" width="6.666666666666667" height="6.666666666666667"></rect><rect x="40" y="33.333333333333336" width="6.666666666666667" height="6.666666666666667"></rect><rect x="40" y="40" width="6.666666666666667" height="6.666666666666667"></rect><rect x="40" y="46.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="40" y="53.333333333333336" width="6.666666666666667" height="6.666666666666667"></rect><rect x="40" y="60" width="6.666666666666667" height="6.666666666666667"></rect><rect x="40" y="66.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="40" y="73.33333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="40" y="80" width="6.666666666666667" height="6.666666666666667"></rect><rect x="40" y="86.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="40" y="93.33333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="46.66666666666667" y="6.666666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="46.66666666666667" y="13.333333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="46.66666666666667" y="26.666666666666668" width="6.666666666666667" height="6.666666666666667"></rect><rect x="46.66666666666667" y="46.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="46.66666666666667" y="66.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="46.66666666666667" y="73.33333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="46.66666666666667" y="93.33333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="53.333333333333336" y="0" width="6.666666666666667" height="6.666666666666667"></rect><rect x="53.333333333333336" y="6.666666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="53.333333333333336" y="13.333333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="53.333333333333336" y="20" width="6.666666666666667" height="6.666666666666667"></rect><rect x="53.333333333333336" y="26.666666666666668" width="6.666666666666667" height="6.666666666666667"></rect><rect x="53.333333333333336" y="33.333333333333336" width="6.666666666666667" height="6.666666666666667"></rect><rect x="53.333333333333336" y="40" width="6.666666666666667" height="6.666666666666667"></rect><rect x="53.333333333333336" y="60" width="6.666666666666667" height="6.666666666666667"></rect><rect x="53.333333333333336" y="73.33333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="53.333333333333336" y="80" width="6.666666666666667" height="6.666666666666667"></rect><rect x="60" y="0" width="6.666666666666667" height="6.666666666666667"></rect><rect x="60" y="13.333333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="60" y="26.666666666666668" width="6.666666666666667" height="6.666666666666667"></rect><rect x="60" y="40" width="6.666666666666667" height="6.666666666666667"></rect><rect x="60" y="46.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="60" y="53.333333333333336" width="6.666666666666667" height="6.666666666666667"></rect><rect x="60" y="86.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="66.66666666666667" y="0" width="6.666666666666667" height="6.666666666666667"></rect><rect x="66.66666666666667" y="6.666666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="66.66666666666667" y="13.333333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="66.66666666666667" y="20" width="6.666666666666667" height="6.666666666666667"></rect><rect x="66.66666666666667" y="26.666666666666668" width="6.666666666666667" height="6.666666666666667"></rect><rect x="66.66666666666667" y="40" width="6.666666666666667" height="6.666666666666667"></rect><rect x="66.66666666666667" y="53.333333333333336" width="6.666666666666667" height="6.666666666666667"></rect><rect x="66.66666666666667" y="60" width="6.666666666666667" height="6.666666666666667"></rect><rect x="66.66666666666667" y="73.33333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="66.66666666666667" y="80" width="6.666666666666667" height="6.666666666666667"></rect><rect x="73.33333333333334" y="0" width="6.666666666666667" height="6.666666666666667"></rect><rect x="73.33333333333334" y="13.333333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="73.33333333333334" y="20" width="6.666666666666667" height="6.666666666666667"></rect><rect x="73.33333333333334" y="26.666666666666668" width="6.666666666666667" height="6.666666666666667"></rect><rect x="73.33333333333334" y="33.333333333333336" width="6.666666666666667" height="6.666666666666667"></rect><rect x="73.33333333333334" y="40" width="6.666666666666667" height="6.666666666666667"></rect><rect x="73.33333333333334" y="53.333333333333336" width="6.666666666666667" height="6.666666666666667"></rect><rect x="73.33333333333334" y="60" width="6.666666666666667" height="6.666666666666667"></rect><rect x="73.33333333333334" y="73.33333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="73.33333333333334" y="86.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="80" y="0" width="6.666666666666667" height="6.666666666666667"></rect><rect x="80" y="13.333333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="80" y="20" width="6.666666666666667" height="6.666666666666667"></rect><rect x="80" y="26.666666666666668" width="6.666666666666667" height="6.666666666666667"></rect><rect x="80" y="40" width="6.666666666666667" height="6.666666666666667"></rect><rect x="80" y="46.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="80" y="60" width="6.666666666666667" height="6.666666666666667"></rect><rect x="80" y="66.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="80" y="86.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="80" y="93.33333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="86.66666666666667" y="0" width="6.666666666666667" height="6.666666666666667"></rect><rect x="86.66666666666667" y="13.333333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="86.66666666666667" y="26.666666666666668" width="6.666666666666667" height="6.666666666666667"></rect><rect x="86.66666666666667" y="40" width="6.666666666666667" height="6.666666666666667"></rect><rect x="86.66666666666667" y="73.33333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="86.66666666666667" y="80" width="6.666666666666667" height="6.666666666666667"></rect><rect x="86.66666666666667" y="93.33333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="93.33333333333334" y="0" width="6.666666666666667" height="6.666666666666667"></rect><rect x="93.33333333333334" y="6.666666666666667" width="6.666666666666667" height="6.666666666666667"></rect><rect x="93.33333333333334" y="13.333333333333334" width="6.666666666666667" height="6.666666666666667"></rect><rect x="93.33333333333334" y="20" width="6.666666666666667" height="6.666666666666667"></rect><rect x="93.33333333333334" y="26.666666666666668" width="6.666666666666667" height="6.666666666666667"></rect><rect x="93.33333333333334" y="33.333333333333336" width="6.666666666666667" height="6.666666666666667"></rect><rect x="93.33333333333334" y="40" width="6.666666666666667" height="6.666666666666667"></rect><rect x="93.33333333333334" y="86.66666666666667" width="6.666666666666667" height="6.666666666666667"></rect></svg></div>
+        <div class="contact__bottom-note">Código QR de ejemplo — enlazar a la tienda o catálogo oficial antes de distribuir.</div>
+      </div>
+      <div class="contact__legal">© 2026 OMARIA Sportswear. Catálogo conceptual — precios y datos de contacto de referencia.</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.documentElement.classList.add('js');
+</script>
+
+<script>
+(function () {
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* ---------- cover: entrance handled by CSS; here just parallax + magnetic + scroll cta ---------- */
+  var cover = document.getElementById('cover');
+  var scrollBtn = document.getElementById('scrollBtn');
+  scrollBtn.addEventListener('click', function () {
+    var target = document.getElementById('coleccion');
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  if (!reduceMotion && finePointer) {
+    var layers = [];
+    setTimeout(function () {
+      layers = Array.prototype.slice.call(cover.querySelectorAll('[data-depth]')).map(function (node) {
+        return { node: node, depth: Number(node.dataset.depth || 0) };
+      });
+      cover.addEventListener('mousemove', function (e) {
+        var r = cover.getBoundingClientRect();
+        var nx = (e.clientX - r.left) / r.width - 0.5;
+        var ny = (e.clientY - r.top) / r.height - 0.5;
+        layers.forEach(function (l) {
+          l.node.style.transform = 'translate(' + (nx * l.depth * 60).toFixed(2) + 'px, ' + (ny * l.depth * 40).toFixed(2) + 'px)';
+        });
+      }, { passive: true });
+      cover.addEventListener('mouseleave', function () {
+        layers.forEach(function (l) { l.node.style.transform = 'translate(0, 0)'; });
+      }, { passive: true });
+    }, 1200);
+
+    var onMove = function (e) {
+      var r = scrollBtn.getBoundingClientRect();
+      var x = (e.clientX - (r.left + r.width / 2)) * 0.28;
+      var y = (e.clientY - (r.top + r.height / 2)) * 0.28;
+      scrollBtn.style.transform = 'translate(' + x.toFixed(2) + 'px, ' + y.toFixed(2) + 'px)';
+    };
+    scrollBtn.addEventListener('mousemove', onMove, { passive: true });
+    scrollBtn.addEventListener('mouseleave', function () { scrollBtn.style.transform = 'translate(0, 0)'; }, { passive: true });
+  }
+
+  /* ---------- scroll reveal (.will-reveal), mirrors useSectionReveal (per-element ScrollTrigger) ---------- */
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    document.querySelectorAll('.will-reveal').forEach(function (el) { el.classList.add('is-revealed'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var delay = Number(el.dataset.delay || 0);
+          el.style.transitionDelay = delay + 's';
+          el.classList.add('is-revealed');
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -15% 0px' });
+    document.querySelectorAll('.will-reveal').forEach(function (el) { io.observe(el); });
+  }
+
+  /* ---------- rail nav: scroll-spy ---------- */
+  var railItems = [
+    { id: 'cover', label: 'Portada' },
+    { id: 'coleccion', label: 'Colección' },
+    { id: 'looks', label: 'Looks' },
+    { id: 'contacto', label: 'Contacto' },
+  ];
+  var darkSections = { contacto: true };
+  var rail = document.getElementById('railnav');
+  var railLinks = Array.prototype.slice.call(rail.querySelectorAll('a'));
+  var sections = railItems.map(function (it) { return document.getElementById(it.id); });
+  var offsets = [];
+  var ticking = false;
+
+  function measure() {
+    offsets = sections.map(function (s) { return s ? s.offsetTop : 0; });
+  }
+  function apply() {
+    var pos = window.scrollY + window.innerHeight * 0.4;
+    var idx = 0;
+    for (var i = 0; i < offsets.length; i++) { if (offsets[i] <= pos) idx = i; }
+    var current = railItems[idx].id;
+    railLinks.forEach(function (l, i) { l.classList.toggle('is-active', railItems[i].id === current); });
+    rail.classList.toggle('on-dark', !!darkSections[current]);
+    ticking = false;
+  }
+  function onScroll() {
+    if (!ticking) { requestAnimationFrame(apply); ticking = true; }
+  }
+  measure();
+  apply();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', measure);
+  window.addEventListener('load', measure);
+})();
+</script>
+
+</body>
+</html>

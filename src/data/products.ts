@@ -52,7 +52,8 @@ export type Product = {
   price: number
 }
 
-export const SIZES = 'XS · S · M · L · XL'
+export const SIZE_LIST = ['XS', 'S', 'M', 'L', 'XL']
+export const SIZES = SIZE_LIST.join(' · ')
 
 // Colores reales disponibles en las fotos entregadas (2026-07-18).
 export const TOP_AURA: Product[] = [

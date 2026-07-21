@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite'
+import { resolve } from 'node:path'
 import react from '@vitejs/plugin-react'
 import { viteSingleFile } from 'vite-plugin-singlefile'
 
@@ -15,6 +16,14 @@ export default defineConfig(({ mode }) => {
           cssCodeSplit: false,
           outDir: 'dist-portable',
         }
-      : undefined,
+      : {
+          // Build normal: incluye el catálogo (index.html) y la tienda (tienda.html).
+          rollupOptions: {
+            input: {
+              main: resolve(__dirname, 'index.html'),
+              tienda: resolve(__dirname, 'tienda.html'),
+            },
+          },
+        },
   }
 })

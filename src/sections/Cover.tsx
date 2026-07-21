@@ -42,7 +42,12 @@ export default function Cover() {
             <span>Sportswear</span>
           </div>
         </div>
-        <div className="eyebrow on-dark">Catálogo digital</div>
+        <div className="cover__top-right">
+          <div className="eyebrow on-dark">Catálogo digital</div>
+          <a className="cover__shop-link magnetic" href="/tienda.html">
+            Ir a la tienda ✦
+          </a>
+        </div>
       </div>
       <div className="cover__bottom wrap">
         <div className="eyebrow on-dark cover-in" data-depth="0.6">

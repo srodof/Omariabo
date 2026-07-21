@@ -4,17 +4,22 @@ Catálogo digital de la colección "Esencia" de Omaria Sportswear, más los asse
 
 ## Stack
 
-- **React 19 + TypeScript + Vite**
+- **React 19 + TypeScript + Vite** (multi-página: `index.html` + `tienda.html`)
 - **GSAP + ScrollTrigger** — reveal al hacer scroll, parallax de mouse en el hero, botones/CTA magnéticos, tilt 3D en tarjetas, marquee infinito
-- Sin backend: todo el contenido vive en `src/data/`
+- Sin backend: todo el contenido vive en `src/data/`, el carrito de la tienda vive en `localStorage` del navegador
+
+## Páginas
+
+- **`index.html`** — catálogo de scroll (Cover, Manifesto, Colección, Looks, Contacto). Código en `src/App.tsx` y `src/sections/`.
+- **`tienda.html`** — versión tipo tienda: filtro por categoría, selección de color y talla, carrito y checkout que arma el pedido y lo abre en WhatsApp. Código en `src/store/` (`StoreApp.tsx`, `CartContext.tsx`, `CartDrawer.tsx`, `StoreProductCard.tsx`, `whatsapp.ts`). El número de WhatsApp que recibe los pedidos está en `src/data/site.ts` (`site.whatsapp`).
 
 ## Correr en local
 
 ```bash
 npm install
-npm run dev              # http://localhost:5173
-npm run build             # genera dist/ para desplegar (Vercel u otro hosting estático)
-npm run build:portable    # genera dist-portable/index.html: un único .html sin dependencias externas
+npm run dev              # http://localhost:5173 (catálogo) y http://localhost:5173/tienda.html (tienda)
+npm run build             # genera dist/ con ambas páginas, para desplegar (Vercel u otro hosting estático)
+npm run build:portable    # genera dist-portable/index.html: un único .html sin dependencias externas (solo el catálogo)
 ```
 
 ## Contenido

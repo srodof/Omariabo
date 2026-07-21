@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>OMARIA — Hero / Portada</title>
+
+<style>
+  /* ============ fonts (local files, no base64) ============ */
+  @font-face {
+    font-family: 'Fraunces Var';
+    src: url('assets/fonts/fraunces-var.woff2') format('woff2');
+    font-weight: 200 700;
+    font-style: normal;
+    font-optical-sizing: auto;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Archivo Var';
+    src: url('assets/fonts/archivo-var.woff2') format('woff2');
+    font-weight: 300 800;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* ============ design tokens (from src/styles/global.css) ============ */
+  :root {
+    --paper: #f5f6f4;
+    --paper-deep: #e6e7e5;
+    --ink: #231f1a;
+    --ink-soft: #6f6555;
+    --lavender: #9f8eb6;
+    --sage: #7f99a4;
+    --sage-bright: #96adbe;
+    --line: rgba(35, 31, 26, 0.16);
+    --line-on-dark: rgba(238, 230, 216, 0.22);
+    --radius: 2px;
+    --wrap: min(1240px, 92vw);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Archivo Var', 'Archivo', sans-serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  .display {
+    font-family: 'Fraunces Var', 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 340;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  .eyebrow {
+    font-family: 'Archivo Var', 'Archivo', sans-serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .eyebrow.on-dark {
+    color: var(--paper);
+    opacity: 0.75;
+  }
+
+  .wrap {
+    width: var(--wrap);
+    margin: 0 auto;
+  }
+
+  /* ============ cover / hero ============ */
+  .cover {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--paper);
+    overflow: hidden;
+  }
+  .cover__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 18%;
+    will-change: transform;
+  }
+  .cover__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(20, 17, 13, 0.55) 0%,
+      rgba(20, 17, 13, 0.08) 30%,
+      rgba(20, 17, 13, 0.15) 55%,
+      rgba(20, 17, 13, 0.86) 100%
+    );
+  }
+  .cover__top {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: var(--wrap);
+    margin: 0 auto;
+    padding-top: 34px;
+  }
+  .cover__mark {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .cover__mark img {
+    height: 34px;
+    width: auto;
+  }
+  .cover__wordmark {
+    font-family: 'Archivo Var', 'Archivo', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+  }
+  .cover__wordmark span {
+    display: block;
+    font-weight: 300;
+    letter-spacing: 0.32em;
+    font-size: 0.56rem;
+    opacity: 0.7;
+    margin-top: 2px;
+  }
+
+  .cover__bottom {
+    position: relative;
+    z-index: 2;
+    width: var(--wrap);
+    margin: 0 auto;
+    padding-bottom: 56px;
+  }
+  .cover__title {
+    font-size: clamp(4rem, 13vw, 9.5rem);
+    line-height: 0.86;
+    margin: 14px 0 20px;
+    color: var(--paper);
+  }
+  .cover__slogan {
+    font-family: 'Archivo Var', 'Archivo', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    max-width: 34ch;
+    color: var(--paper);
+    opacity: 0.92;
+  }
+  .cover__scroll {
+    margin-top: 38px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 6px 0;
+    font-family: inherit;
+  }
+  .cover__scroll::before {
+    content: '';
+    width: 26px;
+    height: 1px;
+    background: var(--paper);
+    display: block;
+  }
+
+  /* ============ entrance animation ============ */
+  /* Reproduces the original GSAP timeline (delay .2s, stagger .12s,
+     power3.out ≈ cubic-bezier(.16,1,.3,1)) with pure CSS keyframes. */
+  @keyframes coverImgScaleIn {
+    from { transform: scale(1.08); }
+    to   { transform: scale(1); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .cover__img {
+    animation: coverImgScaleIn 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both;
+  }
+  .cover-in {
+    opacity: 0;
+    animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .cover__top.cover-in   { animation-delay: 0.20s; }
+  .eyebrow.cover-in      { animation-delay: 0.32s; }
+  .cover__title.cover-in { animation-delay: 0.44s; }
+  .cover__slogan.cover-in{ animation-delay: 0.56s; }
+  .cover__scroll.cover-in{ animation-delay: 0.68s; }
+
+  /* ============ mouse parallax + magnetic button ============ */
+  /* Smooths any transform set by JS (mousemove) — same easing family
+     used above, matching the original quickTo(power3.out) feel. */
+  [data-depth] {
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .magnetic {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cover-in { opacity: 1; animation: none; transform: none; }
+    .cover__img { animation: none; }
+    [data-depth], .magnetic { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<section class="cover" id="cover">
+  <img class="cover__img" src="assets/cover.jpg" alt="Modelo usando crop top blanco y calza lila OMARIA" />
+  <div class="cover__scrim"></div>
+
+  <div class="cover__top cover-in">
+    <div class="cover__mark" data-depth="0.4">
+      <img src="assets/isotipo-white.png" alt="Isotipo OMARIA" />
+      <div class="cover__wordmark">
+        Omaria
+        <span>Sportswear</span>
+      </div>
+    </div>
+    <div class="eyebrow on-dark">Catálogo digital</div>
+  </div>
+
+  <div class="cover__bottom wrap">
+    <div class="eyebrow on-dark cover-in" data-depth="0.6">Colección 2026</div>
+    <h1 class="cover__title display cover-in" data-depth="1">Esencia</h1>
+    <p class="cover__slogan cover-in" data-depth="0.8">
+      Fuerza que se mueve contigo. Prendas deportivas diseñadas para acompañar cada versión de ti.
+    </p>
+    <button class="cover__scroll cover-in magnetic" id="scrollBtn">Descubre la colección</button>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var cover = document.getElementById('cover');
+    var scrollBtn = document.getElementById('scrollBtn');
+
+    // "Descubre la colección" — in the full site this scrolls to #coleccion.
+    // Kept as a harmless no-op here since this file only contains the hero.
+    scrollBtn.addEventListener('click', function () {
+      var target = document.getElementById('coleccion');
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    if (reduceMotion || !finePointer) return;
+
+    // ---- mouse parallax (mirrors useMouseParallax, activates after 1200ms) ----
+    var layers = [];
+    setTimeout(function () {
+      layers = Array.prototype.slice
+        .call(cover.querySelectorAll('[data-depth]'))
+        .map(function (node) {
+          return { node: node, depth: Number(node.dataset.depth || 0) };
+        });
+
+      cover.addEventListener('mousemove', function (e) {
+        var r = cover.getBoundingClientRect();
+        var nx = (e.clientX - r.left) / r.width - 0.5;
+        var ny = (e.clientY - r.top) / r.height - 0.5;
+        layers.forEach(function (l) {
+          l.node.style.transform =
+            'translate(' + (nx * l.depth * 60).toFixed(2) + 'px, ' + (ny * l.depth * 40).toFixed(2) + 'px)';
+        });
+      }, { passive: true });
+
+      cover.addEventListener('mouseleave', function () {
+        layers.forEach(function (l) { l.node.style.transform = 'translate(0, 0)'; });
+      }, { passive: true });
+    }, 1200);
+
+    // ---- magnetic button (mirrors useMagnetic) ----
+    var onMove = function (e) {
+      var r = scrollBtn.getBoundingClientRect();
+      var x = (e.clientX - (r.left + r.width / 2)) * 0.28;
+      var y = (e.clientY - (r.top + r.height / 2)) * 0.28;
+      scrollBtn.style.transform = 'translate(' + x.toFixed(2) + 'px, ' + y.toFixed(2) + 'px)';
+    };
+    var onLeave = function () {
+      scrollBtn.style.transform = 'translate(0, 0)';
+    };
+    scrollBtn.addEventListener('mousemove', onMove, { passive: true });
+    scrollBtn.addEventListener('mouseleave', onLeave, { passive: true });
+  })();
+</script>
+
+</body>
+</html>

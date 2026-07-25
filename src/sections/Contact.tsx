@@ -1,5 +1,4 @@
 import isotipoWhite from '../assets/photos/isotipo_white.png'
-import QrPlaceholder from '../components/QrPlaceholder'
 import { site } from '../data/site'
 import { useRevealRef } from '../lib/gsap'
 
@@ -27,10 +26,6 @@ export default function Contact() {
                   Instagram
                   <span>{site.instagram}</span>
                 </li>
-                <li>
-                  TikTok
-                  <span>{site.tiktok}</span>
-                </li>
               </ul>
             </div>
             <div className="contact__col">
@@ -40,23 +35,11 @@ export default function Contact() {
                   Sitio web
                   <span>{site.website}</span>
                 </li>
-                <li>
-                  Mayoreo y distribución
-                  <span>{site.wholesaleEmail}</span>
-                </li>
               </ul>
             </div>
           </div>
         </div>
         <div className="contact__bottom will-reveal" data-delay="0.15">
-          <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-            <div className="qr">
-              <QrPlaceholder />
-            </div>
-            <div className="contact__bottom-note">
-              Código QR de ejemplo — enlazar a la tienda o catálogo oficial antes de distribuir.
-            </div>
-          </div>
           <div className="contact__legal">
             © 2026 OMARIA Sportswear. Catálogo conceptual — precios y datos de contacto de
             referencia.

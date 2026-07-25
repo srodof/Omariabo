@@ -1,7 +1,8 @@
 import auraNegroHero from '../assets/photos/aura_negro_hero.jpg'
 import auraFucsiaHero from '../assets/photos/aura_fucsia_hero.jpg'
-import novaMentaHero from '../assets/photos/nova_menta_hero.jpg'
-import novaLilaHero from '../assets/photos/nova_lila_hero.jpg'
+import combinacion3 from '../assets/photos/Combinación 3.jpg'
+import combinacion4 from '../assets/photos/Combinación 4.jpg'
+import combinacion5 from '../assets/photos/Combinación 5.jpg'
 
 export type Look = {
   title: string
@@ -30,18 +31,30 @@ export const LOOKS: Look[] = [
     ],
   },
   {
-    title: 'Menta Fresh',
-    desc: 'Top Nova Menta + Calzas Biker Menta — un tono suave y versátil para yoga, pilates o el día a día.',
-    img: novaMentaHero,
+    title: 'Pastel Crush',
+    desc: 'Top Aura Lila + Calzas Biker Menta — el mix de pasteles que combina fuerza y frescura en un mismo look.',
+    img: combinacion3,
     pieces: [
-      { line: 'Top Nova', colorway: 'Menta', hex: '#8fe0d4' },
+      { line: 'Top Aura', colorway: 'Lila', hex: '#b98ee0' },
       { line: 'Calzas Biker', colorway: 'Menta', hex: '#8fe0d4' },
     ],
   },
   {
-    title: 'Bloom Lila',
-    desc: 'Top Nova Lila — silueta racerback en un tono lila que combina con básicos negros o blancos.',
-    img: novaLilaHero,
-    pieces: [{ line: 'Top Nova', colorway: 'Lila', hex: '#b98ee0' }],
+    title: 'Suede Mint',
+    desc: 'Top Nova Menta + Calzas Biker Cacao — el contraste suave entre menta y cacao para un training con estilo.',
+    img: combinacion4,
+    pieces: [
+      { line: 'Top Nova', colorway: 'Menta', hex: '#8fe0d4' },
+      { line: 'Calzas Biker', colorway: 'Cacao', hex: '#a98a95' },
+    ],
+  },
+  {
+    title: 'Cacao Noir',
+    desc: 'Top Aura Cacao + Calzas Biker Negro — la combinación neutra y elegante para cualquier rutina.',
+    img: combinacion5,
+    pieces: [
+      { line: 'Top Aura', colorway: 'Cacao', hex: '#a98a95' },
+      { line: 'Calzas Biker', colorway: 'Negro', hex: '#1a1a1a' },
+    ],
   },
 ]

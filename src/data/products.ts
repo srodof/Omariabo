@@ -57,41 +57,41 @@ export const SIZES = SIZE_LIST.join(' · ')
 
 // Colores reales disponibles en las fotos entregadas (2026-07-18).
 export const TOP_AURA: Product[] = [
-  { line: 'Top Aura', colorway: 'Negro', hex: '#1a1a1a', hero: auraNegroHero, sec: auraNegroSec, price: 175 },
-  { line: 'Top Aura', colorway: 'Azul', hex: '#2f4fd6', hero: auraAzulHero, sec: auraAzulSec, price: 175 },
-  { line: 'Top Aura', colorway: 'Fucsia', hex: '#ec1f8f', hero: auraFucsiaHero, sec: auraFucsiaSec, price: 175 },
-  { line: 'Top Aura', colorway: 'Menta', hex: '#8fe0d4', hero: auraMentaHero, sec: auraMentaSec, price: 175 },
-  { line: 'Top Aura', colorway: 'Lila', hex: '#b98ee0', hero: auraLilaHero, sec: auraLilaHero, price: 175 },
-  { line: 'Top Aura', colorway: 'Cacao', hex: '#a98a95', hero: auraCacaoHero, sec: auraCacaoSec, price: 175 },
+  { line: 'Top Aura', colorway: 'Negro', hex: '#1a1a1a', hero: auraNegroHero, sec: auraNegroSec, price: 100 },
+  { line: 'Top Aura', colorway: 'Azul', hex: '#2f4fd6', hero: auraAzulHero, sec: auraAzulSec, price: 100 },
+  { line: 'Top Aura', colorway: 'Fucsia', hex: '#ec1f8f', hero: auraFucsiaHero, sec: auraFucsiaSec, price: 100 },
+  { line: 'Top Aura', colorway: 'Menta', hex: '#8fe0d4', hero: auraMentaHero, sec: auraMentaSec, price: 100 },
+  { line: 'Top Aura', colorway: 'Lila', hex: '#b98ee0', hero: auraLilaHero, sec: auraLilaHero, price: 100 },
+  { line: 'Top Aura', colorway: 'Cacao', hex: '#a98a95', hero: auraCacaoHero, sec: auraCacaoSec, price: 100 },
 ]
 
 export const TOP_NOVA: Product[] = [
-  { line: 'Top Nova', colorway: 'Negro', hex: '#1a1a1a', hero: novaNegroHero, sec: novaNegroHero, price: 175 },
-  { line: 'Top Nova', colorway: 'Azul', hex: '#2f4fd6', hero: novaAzulHero, sec: novaAzulSec, price: 175 },
-  { line: 'Top Nova', colorway: 'Menta', hex: '#8fe0d4', hero: novaMentaHero, sec: novaMentaSec, price: 175 },
-  { line: 'Top Nova', colorway: 'Lila', hex: '#b98ee0', hero: novaLilaHero, sec: novaLilaSec, price: 175 },
-  { line: 'Top Nova', colorway: 'Cacao', hex: '#a98a95', hero: novaCacaoHero, sec: novaCacaoSec, price: 175 },
+  { line: 'Top Nova', colorway: 'Negro', hex: '#1a1a1a', hero: novaNegroHero, sec: novaNegroHero, price: 100 },
+  { line: 'Top Nova', colorway: 'Azul', hex: '#2f4fd6', hero: novaAzulHero, sec: novaAzulSec, price: 100 },
+  { line: 'Top Nova', colorway: 'Menta', hex: '#8fe0d4', hero: novaMentaHero, sec: novaMentaSec, price: 100 },
+  { line: 'Top Nova', colorway: 'Lila', hex: '#b98ee0', hero: novaLilaHero, sec: novaLilaSec, price: 100 },
+  { line: 'Top Nova', colorway: 'Cacao', hex: '#a98a95', hero: novaCacaoHero, sec: novaCacaoSec, price: 100 },
 ]
 
 export const CROP_TOPS: Product[] = [
-  { line: 'Crop Top', colorway: 'Blanco', hex: '#f5f4f0', hero: croptopBlancoHero, sec: croptopBlancoSec, price: 145 },
-  { line: 'Crop Top', colorway: 'Negro', hex: '#1a1a1a', hero: croptopNegroHero, sec: croptopNegroSec, price: 145 },
+  { line: 'Crop Top', colorway: 'Blanco', hex: '#f5f4f0', hero: croptopBlancoHero, sec: croptopBlancoSec, price: 100 },
+  { line: 'Crop Top', colorway: 'Negro', hex: '#1a1a1a', hero: croptopNegroHero, sec: croptopNegroSec, price: 100 },
 ]
 
 export const CALZAS_BIKER: Product[] = [
-  { line: 'Calzas Biker', colorway: 'Negro', hex: '#1a1a1a', hero: bikerNegroHero, sec: bikerNegroHero, price: 185 },
-  { line: 'Calzas Biker', colorway: 'Azul', hex: '#2f4fd6', hero: bikerAzulHero, sec: bikerAzulHero, price: 185 },
-  { line: 'Calzas Biker', colorway: 'Fucsia', hex: '#ec1f8f', hero: bikerFucsiaHero, sec: bikerFucsiaHero, price: 185 },
-  { line: 'Calzas Biker', colorway: 'Menta', hex: '#8fe0d4', hero: bikerMentaHero, sec: bikerMentaHero, price: 185 },
+  { line: 'Calzas Biker', colorway: 'Negro', hex: '#1a1a1a', hero: bikerNegroHero, sec: bikerNegroHero, price: 140 },
+  { line: 'Calzas Biker', colorway: 'Azul', hex: '#2f4fd6', hero: bikerAzulHero, sec: bikerAzulHero, price: 140 },
+  { line: 'Calzas Biker', colorway: 'Fucsia', hex: '#ec1f8f', hero: bikerFucsiaHero, sec: bikerFucsiaHero, price: 140 },
+  { line: 'Calzas Biker', colorway: 'Menta', hex: '#8fe0d4', hero: bikerMentaHero, sec: bikerMentaHero, price: 140 },
 ]
 
 export const CALZAS_CORTAS: Product[] = [
-  { line: 'Calzas Cortas', colorway: 'Negro', hex: '#1a1a1a', hero: cortasNegroHero, sec: cortasNegroSec, price: 175 },
-  { line: 'Calzas Cortas', colorway: 'Azul', hex: '#2f4fd6', hero: cortasAzulHero, sec: cortasAzulSec, price: 175 },
-  { line: 'Calzas Cortas', colorway: 'Fucsia', hex: '#ec1f8f', hero: cortasFucsiaHero, sec: cortasFucsiaSec, price: 175 },
-  { line: 'Calzas Cortas', colorway: 'Menta', hex: '#8fe0d4', hero: cortasMentaHero, sec: cortasMentaSec, price: 175 },
-  { line: 'Calzas Cortas', colorway: 'Lila', hex: '#b98ee0', hero: cortasLilaHero, sec: cortasLilaSec, price: 175 },
-  { line: 'Calzas Cortas', colorway: 'Cacao', hex: '#a98a95', hero: cortasCacaoHero, sec: cortasCacaoSec, price: 175 },
+  { line: 'Calzas Cortas', colorway: 'Negro', hex: '#1a1a1a', hero: cortasNegroHero, sec: cortasNegroSec, price: 120 },
+  { line: 'Calzas Cortas', colorway: 'Azul', hex: '#2f4fd6', hero: cortasAzulHero, sec: cortasAzulSec, price: 120 },
+  { line: 'Calzas Cortas', colorway: 'Fucsia', hex: '#ec1f8f', hero: cortasFucsiaHero, sec: cortasFucsiaSec, price: 120 },
+  { line: 'Calzas Cortas', colorway: 'Menta', hex: '#8fe0d4', hero: cortasMentaHero, sec: cortasMentaSec, price: 120 },
+  { line: 'Calzas Cortas', colorway: 'Lila', hex: '#b98ee0', hero: cortasLilaHero, sec: cortasLilaSec, price: 120 },
+  { line: 'Calzas Cortas', colorway: 'Cacao', hex: '#a98a95', hero: cortasCacaoHero, sec: cortasCacaoSec, price: 120 },
 ]
 
 export function linePalette(items: Product[]) {

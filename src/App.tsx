@@ -1,5 +1,6 @@
 import RailNav from './components/RailNav'
 import Marquee from './components/Marquee'
+import WhatsAppButton from './components/WhatsAppButton'
 import Cover from './sections/Cover'
 import Manifesto from './sections/Manifesto'
 import Collection from './sections/Collection'
@@ -16,6 +17,7 @@ export default function App() {
       <Collection />
       <Looks />
       <Contact />
+      <WhatsAppButton />
     </>
   )
 }

@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import coverImg from '../assets/photos/cover.jpg'
 import { CATEGORIES } from '../data/catalog'
+import WhatsAppButton from '../components/WhatsAppButton'
 import { CartProvider } from './CartContext'
 import StoreHeader from './StoreHeader'
 import CategoryTabs from './CategoryTabs'
@@ -47,6 +48,7 @@ function StorePage() {
       </main>
 
       <CartDrawer />
+      <WhatsAppButton />
     </>
   )
 }

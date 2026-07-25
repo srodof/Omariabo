@@ -627,3 +627,43 @@ section {
     grid-template-columns: 1fr;
   }
 }
+
+/* ---------- botón flotante de WhatsApp ---------- */
+.whatsapp-fab {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 40;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(20, 17, 13, 0.28);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.whatsapp-fab:hover {
+  transform: scale(1.06);
+  box-shadow: 0 8px 24px rgba(20, 17, 13, 0.34);
+}
+.whatsapp-fab svg {
+  width: 28px;
+  height: 28px;
+}
+@media (max-width: 600px) {
+  .whatsapp-fab {
+    right: 16px;
+    bottom: 16px;
+    width: 50px;
+    height: 50px;
+  }
+  .whatsapp-fab svg {
+    width: 25px;
+    height: 25px;
+  }
+}

@@ -4,6 +4,5 @@
 # App (Vite + React)
 node_modules
 dist
-dist-portable
 *.local
 *.tsbuildinfo

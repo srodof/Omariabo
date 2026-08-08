@@ -19,13 +19,11 @@ Catálogo digital de la colección "Esencia" de Omaria Sportswear, más los asse
 npm install
 npm run dev              # http://localhost:5173 (catálogo) y http://localhost:5173/tienda.html (tienda)
 npm run build             # genera dist/ con ambas páginas, para desplegar (Vercel u otro hosting estático)
-npm run build:portable    # genera dist-portable/index.html: un único .html sin dependencias externas (solo el catálogo)
 ```
 
 ## Contenido
 
 - **[src](src)** — código de la app (secciones, componentes, datos del catálogo, hooks de animación).
-- **[Catalogo](Catalogo)** — copia "portable" del catálogo (`omaria-coleccion-esencia.html`), generada con `npm run build:portable`. Un solo archivo, se puede abrir sin internet o compartir por WhatsApp/email. Regenerarla tras cualquier cambio de contenido.
 - **[Logos](Logos)** — Isotipos, isologotipos y logotipos en distintas variantes de color y formato (`.ai`, `.pdf`, `.png`, `.jpg`), incluyendo la guía de colores corporativos.
 - **[Imágenes prendas](Imágenes prendas)** — Fotografías de producto originales, organizadas por categoría (`Tops/Top Aura`, `Tops/Top Nova`, `Crop Tops`, `Calzas Biker`, `Calzas Cortas`).
 - **[Referencias](Referencias)** — Imágenes de referencia recopiladas para el desarrollo de la marca y producto.
@@ -36,11 +34,10 @@ npm run build:portable    # genera dist-portable/index.html: un único .html sin
 
 Todo el contenido del catálogo vive en `src/data/`:
 
-- **`products.ts`** — las 3 líneas (Top Essential, Croptop Aura, Bikers Flow), sus colores, precios y fotos.
+- **`products.ts`** — las líneas de la colección (Top Aura, Top Nova, Crop Tops, Calzas Biker, Calzas Cortas, Set Nira, Set Ziba), sus colores, precios y fotos.
+- **`catalog.ts`** — agrupa las líneas de `products.ts` en las categorías que se muestran en el catálogo y la tienda.
 - **`looks.ts`** — los looks completos de la sección "Combina la colección".
-- **`site.ts`** — ⚠️ datos de contacto PLACEHOLDER (Instagram, TikTok, web, email de mayoreo). **Reemplazar antes de publicar.**
-
-Precios (en Bs), tallas y el código QR de contacto son de referencia — ver notas en el propio catálogo.
+- **`site.ts`** — datos de contacto (Instagram, sitio web, número de WhatsApp para pedidos).
 
 ## Uso
 

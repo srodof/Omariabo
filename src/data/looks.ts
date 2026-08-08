@@ -3,6 +3,8 @@ import auraFucsiaHero from '../assets/photos/aura_fucsia_hero.jpg'
 import combinacion3 from '../assets/photos/Combinación 3.jpg'
 import combinacion4 from '../assets/photos/Combinación 4.jpg'
 import combinacion5 from '../assets/photos/Combinación 5.jpg'
+import combinacion6 from '../assets/photos/Combinación 6.jpg'
+import combinacion7 from '../assets/photos/Combinación 7.jpg'
 
 export type Look = {
   title: string
@@ -55,6 +57,24 @@ export const LOOKS: Look[] = [
     pieces: [
       { line: 'Top Aura', colorway: 'Cacao', hex: '#a98a95' },
       { line: 'Calzas Biker', colorway: 'Negro', hex: '#1a1a1a' },
+    ],
+  },
+  {
+    title: 'Nira Sunset',
+    desc: 'Set Nira Top Bordo + Set Nira Calza Beige — mezclá piezas de distintos colores del mismo set para un look propio.',
+    img: combinacion6,
+    pieces: [
+      { line: 'Set Nira', colorway: 'Bordo', hex: '#5e1a22' },
+      { line: 'Set Nira', colorway: 'Beige', hex: '#c7ad8e' },
+    ],
+  },
+  {
+    title: 'Nira Rouge',
+    desc: 'Set Nira Top Negro + Set Nira Calza Bordo — la base neutra con un toque de color en la calza.',
+    img: combinacion7,
+    pieces: [
+      { line: 'Set Nira', colorway: 'Negro', hex: '#1a1a1a' },
+      { line: 'Set Nira', colorway: 'Bordo', hex: '#5e1a22' },
     ],
   },
 ]

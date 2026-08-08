@@ -43,6 +43,20 @@ import cortasMentaSec from '../assets/photos/cortas_menta_sec.jpg'
 import cortasNegroHero from '../assets/photos/cortas_negro_hero.jpg'
 import cortasNegroSec from '../assets/photos/cortas_negro_sec.jpg'
 
+import setNiraBeigeHero from '../assets/photos/set_nira_beige_hero.jpg'
+import setNiraBeigeSec from '../assets/photos/set_nira_beige_sec.jpg'
+import setNiraBordoHero from '../assets/photos/set_nira_bordo_hero.jpg'
+import setNiraBordoSec from '../assets/photos/set_nira_bordo_sec.jpg'
+import setNiraNegroHero from '../assets/photos/set_nira_negro_hero.jpg'
+import setNiraNegroSec from '../assets/photos/set_nira_negro_sec.jpg'
+
+import setZibaBeigeHero from '../assets/photos/set_ziba_beige_hero.jpg'
+import setZibaBeigeSec from '../assets/photos/set_ziba_beige_sec.jpg'
+import setZibaBordoHero from '../assets/photos/set_ziba_bordo_hero.jpg'
+import setZibaBordoSec from '../assets/photos/set_ziba_bordo_sec.jpg'
+import setZibaNegroHero from '../assets/photos/set_ziba_negro_hero.jpg'
+import setZibaNegroSec from '../assets/photos/set_ziba_negro_sec.jpg'
+
 export type Product = {
   line: string
   colorway: string
@@ -92,6 +106,18 @@ export const CALZAS_CORTAS: Product[] = [
   { line: 'Calzas Cortas', colorway: 'Menta', hex: '#8fe0d4', hero: cortasMentaHero, sec: cortasMentaSec, price: 120 },
   { line: 'Calzas Cortas', colorway: 'Lila', hex: '#b98ee0', hero: cortasLilaHero, sec: cortasLilaSec, price: 120 },
   { line: 'Calzas Cortas', colorway: 'Cacao', hex: '#a98a95', hero: cortasCacaoHero, sec: cortasCacaoSec, price: 120 },
+]
+
+export const SET_NIRA: Product[] = [
+  { line: 'Set Nira', colorway: 'Negro', hex: '#1a1a1a', hero: setNiraNegroHero, sec: setNiraNegroSec, price: 280 },
+  { line: 'Set Nira', colorway: 'Bordo', hex: '#5e1a22', hero: setNiraBordoHero, sec: setNiraBordoSec, price: 280 },
+  { line: 'Set Nira', colorway: 'Beige', hex: '#c7ad8e', hero: setNiraBeigeHero, sec: setNiraBeigeSec, price: 280 },
+]
+
+export const SET_ZIBA: Product[] = [
+  { line: 'Set Ziba', colorway: 'Negro', hex: '#1a1a1a', hero: setZibaNegroHero, sec: setZibaNegroSec, price: 380 },
+  { line: 'Set Ziba', colorway: 'Bordo', hex: '#5e1a22', hero: setZibaBordoHero, sec: setZibaBordoSec, price: 380 },
+  { line: 'Set Ziba', colorway: 'Beige', hex: '#c7ad8e', hero: setZibaBeigeHero, sec: setZibaBeigeSec, price: 380 },
 ]
 
 export function linePalette(items: Product[]) {

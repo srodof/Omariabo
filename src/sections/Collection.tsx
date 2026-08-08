@@ -1,5 +1,13 @@
 import ProductCard from '../components/ProductCard'
-import { TOP_AURA, TOP_NOVA, CROP_TOPS, CALZAS_BIKER, CALZAS_CORTAS } from '../data/products'
+import {
+  TOP_AURA,
+  TOP_NOVA,
+  CROP_TOPS,
+  CALZAS_BIKER,
+  CALZAS_CORTAS,
+  SET_NIRA,
+  SET_ZIBA,
+} from '../data/products'
 import { useRevealRef } from '../lib/gsap'
 
 function Category({
@@ -42,9 +50,9 @@ export default function Collection() {
             La colección
           </h2>
           <p className="will-reveal" data-delay="0.1">
-            Cinco líneas pensadas para moverse juntas: dos siluetas de top deportivo, un crop top
-            de algodón, calzas biker de tiro alto y calzas cortas — con el mismo ajuste OMARIA en
-            cada color.
+            Líneas pensadas para moverse juntas: dos siluetas de top deportivo, un crop top de
+            algodón, calzas biker de tiro alto, calzas cortas y sets completos — con el mismo
+            ajuste OMARIA en cada color.
           </p>
         </div>
 
@@ -77,6 +85,28 @@ export default function Collection() {
           title="Calzas Cortas"
           desc="Calzas cortas de tiro alto, silueta ceñida y el mismo ajuste sin costuras que el resto de la colección."
           items={CALZAS_CORTAS}
+        />
+
+        <div className="category">
+          <div className="category__head">
+            <h3 className="display will-reveal">Sets</h3>
+            <p className="will-reveal" data-delay="0.05">
+              Conjuntos completos de top + calza en un mismo color — el look armado en una sola
+              prenda.
+            </p>
+          </div>
+        </div>
+        <Category
+          id="cat-set-nira"
+          title="Set Nira"
+          desc="Top con espalda cruzada y calza corta a juego, en tela acanalada — el conjunto para entrenar sin combinar nada."
+          items={SET_NIRA}
+        />
+        <Category
+          id="cat-set-ziba"
+          title="Set Ziba"
+          desc="Top con espalda cruzada y calza de bota ancha a juego, en tela acanalada — silueta relajada para el día a día."
+          items={SET_ZIBA}
         />
       </div>
     </section>

@@ -1,5 +1,13 @@
 import type { Product } from './products'
-import { TOP_AURA, TOP_NOVA, CROP_TOPS, CALZAS_BIKER, CALZAS_CORTAS } from './products'
+import {
+  TOP_AURA,
+  TOP_NOVA,
+  CROP_TOPS,
+  CALZAS_BIKER,
+  CALZAS_CORTAS,
+  SET_NIRA,
+  SET_ZIBA,
+} from './products'
 
 export type Category = {
   id: string
@@ -13,6 +21,8 @@ export const CATEGORIES: Category[] = [
   { id: 'crop-tops', label: 'Crop Tops', items: CROP_TOPS },
   { id: 'calzas-biker', label: 'Calzas Biker', items: CALZAS_BIKER },
   { id: 'calzas-cortas', label: 'Calzas Cortas', items: CALZAS_CORTAS },
+  { id: 'set-nira', label: 'Set Nira', items: SET_NIRA },
+  { id: 'set-ziba', label: 'Set Ziba', items: SET_ZIBA },
 ]
 
 export const ALL_PRODUCTS: Product[] = CATEGORIES.flatMap((c) => c.items)

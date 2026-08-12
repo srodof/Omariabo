@@ -1,5 +1,5 @@
 import { site } from '../data/site'
-import type { CartItem } from './CartContext'
+import type { CartItem } from './cart'
 
 export function buildOrderMessage(items: CartItem[], subtotal: number) {
   const lines = items.map(

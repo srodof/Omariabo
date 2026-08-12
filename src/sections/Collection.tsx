@@ -10,6 +10,21 @@ import {
 } from '../data/products'
 import { useRevealRef } from '../lib/gsap'
 
+/** Encabezado de grupo (sin grilla), p. ej. el intro de "Sets". */
+function GroupHead({ title, desc }: { title: string; desc: string }) {
+  const ref = useRevealRef<HTMLDivElement>()
+  return (
+    <div className="category" ref={ref}>
+      <div className="category__head">
+        <h3 className="display will-reveal">{title}</h3>
+        <p className="will-reveal" data-delay="0.05">
+          {desc}
+        </p>
+      </div>
+    </div>
+  )
+}
+
 function Category({
   id,
   title,
@@ -87,15 +102,10 @@ export default function Collection() {
           items={CALZAS_CORTAS}
         />
 
-        <div className="category">
-          <div className="category__head">
-            <h3 className="display will-reveal">Sets</h3>
-            <p className="will-reveal" data-delay="0.05">
-              Conjuntos completos de top + calza en un mismo color — el look armado en una sola
-              prenda.
-            </p>
-          </div>
-        </div>
+        <GroupHead
+          title="Sets"
+          desc="Conjuntos completos de top + calza en un mismo color — el look armado en una sola prenda."
+        />
         <Category
           id="cat-set-nira"
           title="Set Nira"

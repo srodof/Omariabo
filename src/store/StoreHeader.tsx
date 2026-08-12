@@ -1,4 +1,4 @@
-import { useCart } from './CartContext'
+import { useCart } from './cart'
 
 export default function StoreHeader() {
   const { count, openCart } = useCart()

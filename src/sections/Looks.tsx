@@ -14,7 +14,7 @@ function LookCard({ look, index }: { look: (typeof LOOKS)[number]; index: number
         <p className="desc">{look.desc}</p>
         <div className="look__pieces">
           {look.pieces.map((p) => (
-            <div className="look__piece" key={p.line}>
+            <div className="look__piece" key={`${p.line}-${p.colorway}`}>
               <span className="swatch" style={{ ['--c' as string]: p.hex }} />
               <span>
                 <b>{p.line}</b> {p.colorway}

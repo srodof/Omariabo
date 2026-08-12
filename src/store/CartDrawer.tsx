@@ -1,13 +1,26 @@
-import { useCart } from './CartContext'
+import { useEffect } from 'react'
+import { useCart } from './cart'
 import { whatsappOrderUrl } from './whatsapp'
 
 export default function CartDrawer() {
   const { items, count, subtotal, isOpen, closeCart, removeItem, setQty } = useCart()
 
+  // Cerrar con Escape mientras la bolsa está abierta.
+  useEffect(() => {
+    if (!isOpen) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeCart()
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [isOpen, closeCart])
+
   return (
     <>
-      <div className={`s-scrim${isOpen ? ' is-open' : ''}`} onClick={closeCart} />
-      <aside className={`s-drawer${isOpen ? ' is-open' : ''}`} aria-hidden={!isOpen}>
+      <div className={`s-scrim${isOpen ? ' is-open' : ''}`} onClick={closeCart} aria-hidden="true" />
+      {/* `inert` saca del orden de tabulación lo de adentro cuando está cerrado;
+          con solo aria-hidden los botones seguían siendo enfocables con Tab. */}
+      <aside className={`s-drawer${isOpen ? ' is-open' : ''}`} aria-label="Tu bolsa" inert={!isOpen}>
         <div className="s-drawer__head">
           <h3>Tu bolsa {count > 0 && <span>({count})</span>}</h3>
           <button type="button" className="s-drawer__close" onClick={closeCart} aria-label="Cerrar bolsa">
@@ -22,24 +35,37 @@ export default function CartDrawer() {
             <div className="s-drawer__list">
               {items.map((it) => (
                 <div className="s-drawer__item" key={it.key}>
-                  <img src={it.hero} alt={`${it.line} ${it.colorway}`} />
+                  <img src={it.hero} alt={`${it.line} ${it.colorway}`} loading="lazy" />
                   <div className="s-drawer__item-info">
                     <div className="s-drawer__item-line">{it.line}</div>
                     <div className="s-drawer__item-name">{it.colorway}</div>
                     <div className="s-drawer__item-size">Talla {it.size}</div>
                     <div className="s-drawer__item-qty">
-                      <button type="button" onClick={() => setQty(it.key, it.qty - 1)} aria-label="Restar">
+                      <button
+                        type="button"
+                        onClick={() => setQty(it.key, it.qty - 1)}
+                        aria-label={`Restar una unidad de ${it.line} ${it.colorway} talla ${it.size}`}
+                      >
                         −
                       </button>
                       <span>{it.qty}</span>
-                      <button type="button" onClick={() => setQty(it.key, it.qty + 1)} aria-label="Sumar">
+                      <button
+                        type="button"
+                        onClick={() => setQty(it.key, it.qty + 1)}
+                        aria-label={`Sumar una unidad de ${it.line} ${it.colorway} talla ${it.size}`}
+                      >
                         +
                       </button>
                     </div>
                   </div>
                   <div className="s-drawer__item-right">
                     <span className="s-drawer__item-price">Bs {it.price * it.qty}</span>
-                    <button type="button" className="s-drawer__remove" onClick={() => removeItem(it.key)}>
+                    <button
+                      type="button"
+                      className="s-drawer__remove"
+                      onClick={() => removeItem(it.key)}
+                      aria-label={`Quitar ${it.line} ${it.colorway} talla ${it.size} de la bolsa`}
+                    >
                       Quitar
                     </button>
                   </div>

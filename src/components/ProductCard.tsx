@@ -1,5 +1,5 @@
 import type { Product } from '../data/products'
-import { linePalette, SIZES } from '../data/products'
+import { linePalette, sizesLabel } from '../data/products'
 
 export default function ProductCard({ product, siblings }: { product: Product; siblings: Product[] }) {
   const palette = linePalette(siblings)
@@ -24,7 +24,11 @@ export default function ProductCard({ product, siblings }: { product: Product; s
         <div className="product__line">{product.line}</div>
         <h4 className="product__name">{product.colorway}</h4>
         <div className="product__meta">
-          <div className="product__colors" aria-label="Colores disponibles">
+          <div
+            className="product__colors"
+            role="img"
+            aria-label={`Colores disponibles: ${palette.map((c) => c.colorway).join(', ')}`}
+          >
             {palette.map(({ colorway, hex }) => (
               <span
                 key={colorway}
@@ -34,7 +38,7 @@ export default function ProductCard({ product, siblings }: { product: Product; s
               />
             ))}
           </div>
-          <div className="product__sizes">{SIZES}</div>
+          <div className="product__sizes">{sizesLabel(product.line)}</div>
         </div>
       </div>
     </article>

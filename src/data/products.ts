@@ -57,8 +57,27 @@ import setZibaBordoSec from '../assets/photos/set_ziba_bordo_sec.jpg'
 import setZibaNegroHero from '../assets/photos/set_ziba_negro_hero.jpg'
 import setZibaNegroSec from '../assets/photos/set_ziba_negro_sec.jpg'
 
+/** Orden canónico de tallas, para mostrarlas siempre de menor a mayor. */
+export const SIZE_LIST = ['XS', 'S', 'M', 'L', 'XL'] as const
+
+/**
+ * Tallas realmente disponibles por línea.
+ * Fuente: "Precios y tallas.xlsx" (hoja 1). Ninguna prenda se produce en XS.
+ */
+export const SIZES_BY_LINE = {
+  'Top Aura': ['S', 'M', 'L', 'XL'],
+  'Top Nova': ['S', 'M', 'L', 'XL'],
+  'Crop Top': ['S', 'M', 'L'],
+  'Calzas Biker': ['S', 'M', 'L', 'XL'],
+  'Calzas Cortas': ['S', 'M', 'L', 'XL'],
+  'Set Nira': ['S', 'M'],
+  'Set Ziba': ['S', 'M'],
+} as const satisfies Record<string, readonly string[]>
+
+export type Line = keyof typeof SIZES_BY_LINE
+
 export type Product = {
-  line: string
+  line: Line
   colorway: string
   hex: string
   hero: string
@@ -66,8 +85,11 @@ export type Product = {
   price: number
 }
 
-export const SIZE_LIST = ['XS', 'S', 'M', 'L', 'XL']
-export const SIZES = SIZE_LIST.join(' · ')
+/** Tallas de una prenda, en el orden canónico. */
+export const sizesFor = (line: Line): readonly string[] => SIZES_BY_LINE[line]
+
+/** Versión para mostrar como texto, p. ej. "S · M · L". */
+export const sizesLabel = (line: Line) => sizesFor(line).join(' · ')
 
 // Colores reales disponibles en las fotos entregadas (2026-07-18).
 export const TOP_AURA: Product[] = [

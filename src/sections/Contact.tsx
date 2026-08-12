@@ -1,5 +1,5 @@
 import isotipoWhite from '../assets/photos/isotipo_white.png'
-import { site } from '../data/site'
+import { site, siteUrls } from '../data/site'
 import { useRevealRef } from '../lib/gsap'
 
 export default function Contact() {
@@ -20,20 +20,28 @@ export default function Contact() {
           </div>
           <div className="contact__cols will-reveal" data-delay="0.1">
             <div className="contact__col">
-              <h4>Redes sociales</h4>
+              <h3>Redes sociales</h3>
               <ul>
                 <li>
                   Instagram
-                  <span>{site.instagram}</span>
+                  <span>
+                    <a href={siteUrls.instagram} target="_blank" rel="noopener noreferrer">
+                      {site.instagram}
+                    </a>
+                  </span>
                 </li>
               </ul>
             </div>
             <div className="contact__col">
-              <h4>Comercial</h4>
+              <h3>Comercial</h3>
               <ul>
                 <li>
                   Sitio web
-                  <span>{site.website}</span>
+                  <span>
+                    <a href={siteUrls.website} target="_blank" rel="noopener noreferrer">
+                      {site.website}
+                    </a>
+                  </span>
                 </li>
               </ul>
             </div>
@@ -41,8 +49,8 @@ export default function Contact() {
         </div>
         <div className="contact__bottom will-reveal" data-delay="0.15">
           <div className="contact__legal">
-            © 2026 OMARIA Sportswear. Catálogo conceptual — precios y datos de contacto de
-            referencia.
+            © {new Date().getFullYear()} OMARIA Sportswear. Catálogo conceptual — precios y datos de
+            contacto de referencia.
           </div>
         </div>
       </div>

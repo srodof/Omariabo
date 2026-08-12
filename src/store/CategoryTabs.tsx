@@ -8,8 +8,15 @@ export default function CategoryTabs({
   onChange: (id: string) => void
 }) {
   return (
-    <div className="s-tabs" role="tablist" aria-label="Categorías">
-      <button type="button" className={`s-tab${active === 'todas' ? ' is-active' : ''}`} onClick={() => onChange('todas')}>
+    // No es un tablist real (no hay tabpanels), así que se expone como grupo de
+    // botones de filtro con estado presionado.
+    <div className="s-tabs" role="group" aria-label="Filtrar por categoría">
+      <button
+        type="button"
+        className={`s-tab${active === 'todas' ? ' is-active' : ''}`}
+        aria-pressed={active === 'todas'}
+        onClick={() => onChange('todas')}
+      >
         Todas
       </button>
       {CATEGORIES.map((c) => (
@@ -17,6 +24,7 @@ export default function CategoryTabs({
           key={c.id}
           type="button"
           className={`s-tab${active === c.id ? ' is-active' : ''}`}
+          aria-pressed={active === c.id}
           onClick={() => onChange(c.id)}
         >
           {c.label}

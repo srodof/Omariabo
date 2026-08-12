@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import coverImg from '../assets/photos/cover.jpg'
 import isotipoWhite from '../assets/photos/isotipo_white.png'
 import { useMouseParallax, useMagnetic } from '../lib/interactions'
-import { useGsap, gsap } from '../lib/gsap'
+import { useGsap, gsap, prefersReducedMotion } from '../lib/gsap'
 
 export default function Cover() {
   const scope = useRef<HTMLElement>(null)
@@ -27,12 +27,20 @@ export default function Cover() {
   })
 
   const scrollToCollection = () => {
-    document.getElementById('coleccion')?.scrollIntoView({ behavior: 'smooth' })
+    document.getElementById('coleccion')?.scrollIntoView({
+      behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+    })
   }
 
   return (
     <section className="cover" id="cover" ref={scope}>
-      <img className="cover__img" src={coverImg} alt="Modelo usando crop top blanco y calza lila OMARIA" />
+      {/* Es el LCP de la portada: carga con prioridad alta y sin lazy. */}
+      <img
+        className="cover__img"
+        src={coverImg}
+        alt="Modelo usando crop top blanco y calza lila OMARIA"
+        fetchPriority="high"
+      />
       <div className="cover__scrim" />
       <div className="cover__top cover-in">
         <div className="cover__mark" data-depth="0.4">
@@ -60,7 +68,7 @@ export default function Cover() {
           Fuerza que se mueve contigo. Prendas deportivas diseñadas para acompañar cada versión de
           ti.
         </p>
-        <button className="cover__scroll cover-in magnetic" onClick={scrollToCollection}>
+        <button type="button" className="cover__scroll cover-in magnetic" onClick={scrollToCollection}>
           Descubre la colección
         </button>
       </div>

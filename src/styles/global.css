@@ -577,7 +577,7 @@ section {
   grid-template-columns: 1fr 1fr;
   gap: 34px;
 }
-.contact__col h4 {
+.contact__col h3 {
   font-size: 0.7rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
